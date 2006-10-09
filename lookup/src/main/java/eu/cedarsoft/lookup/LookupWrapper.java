@@ -61,7 +61,8 @@ public class LookupWrapper implements Lookup, LookupStore {
   }
 
   public <T> void store( @NotNull Class<T> type, @NotNull T value ) {
-    T old = type.cast( store.put( type, value ) );
+    T old = type.cast( lookup( type ) );
+    store.put( type, value );
     lcs.fireLookupChanged( type, old, value );
   }
 
