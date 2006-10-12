@@ -19,6 +19,20 @@ public class NodesTest extends TestCase {
     super.setUp();
   }
 
+  public void testPath() {
+    Node node = new DefaultNode( "parent" );
+    assertEquals( "parent", node.getPath().toString() );
+  }
+
+  public void testSetParent() {
+    Node node = new DefaultNode( "aa" );
+    try {
+      node.setParent( new DefaultNode( "uu" ) );
+      fail( "Where is the Exception" );
+    } catch ( Exception ignore ) {
+    }
+  }
+
   public void testBasics() {
     Node node = new DefaultNode( "a" );
     assertEquals( "a", node.getName() );

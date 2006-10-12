@@ -26,6 +26,9 @@ public class DefaultNode implements Node {
   }
 
   public void setParent( @Nullable Node parent ) {
+    if ( parent != null && !parent.isChild( this ) ) {
+      throw new IllegalArgumentException( "invalid parent " + parent );
+    }
     this.parent = parent;
   }
 
@@ -33,6 +36,10 @@ public class DefaultNode implements Node {
     this.childrenSupport = childrenSupport;
     this.childrenSupport.setParentNode( this );
     this.name = name;
+  }
+
+  public boolean isChild( @NotNull Node child ) {
+    return childrenSupport.isChild( child );
   }
 
   @NotNull
@@ -56,5 +63,10 @@ public class DefaultNode implements Node {
   @Nullable
   public Node getParent() {
     return parent;
+  }
+
+  @NotNull
+  public Path getPath() {
+    return Path.buildPath( this );
   }
 }

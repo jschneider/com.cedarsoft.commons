@@ -56,4 +56,8 @@ public class DefaultChildrenSupport implements ChildrenSupport {
   public void setParentNode( @NotNull Node parentNode ) {
     this.parentNode = parentNode;
   }
+
+  public boolean isChild( @NotNull Node child ) {
+    return nodes.contains( child );
+  }
 }

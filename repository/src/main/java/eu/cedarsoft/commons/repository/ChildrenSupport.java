@@ -37,4 +37,5 @@ public interface ChildrenSupport {
    */
   void setParentNode( @NotNull Node parentNode );
 
+  boolean isChild( @NotNull Node child );
 }

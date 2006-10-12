@@ -53,4 +53,15 @@ public interface Node {
 
 
   void setParent( @Nullable Node parent );
+
+  @NotNull
+  Path getPath();
+
+  /**
+   * Whether the given node is a child of this or not
+   *
+   * @param child the possible child
+   * @return true if the given node is a child, false otherwise
+   */
+  boolean isChild( @NotNull Node child );
 }
