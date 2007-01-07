@@ -16,11 +16,9 @@ import java.util.Map;
  *         <a href="http://www.xore.de">Xore Systems</a>
  */
 public class DynamicLookup implements Lookup {
-  private final Object value;
   private final Map<Class<?>, Object> store = new HashMap<Class<?>, Object>();
 
   public DynamicLookup( @NotNull Object value ) {
-    this.value = value;
 
     //Create the store map
     //Super classes

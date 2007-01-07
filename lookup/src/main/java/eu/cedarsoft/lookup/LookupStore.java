@@ -11,5 +11,11 @@ import org.jetbrains.annotations.NotNull;
  *         <a href="http://www.xore.de">Xore Systems</a>
  */
 public interface LookupStore extends Lookup {
+  /**
+   * A lookup store is able to add elements to the lookup
+   *
+   * @param type  the type
+   * @param value the value
+   */
   <T> void store( @NotNull Class<T> type, @NotNull T value );
 }

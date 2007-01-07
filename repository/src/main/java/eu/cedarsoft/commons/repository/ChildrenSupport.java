@@ -13,11 +13,26 @@ import java.util.List;
  *         <a href="http://www.xore.de">Xore Systems</a>
  */
 public interface ChildrenSupport {
+  /**
+   * Returns the children
+   *
+   * @return the children
+   */
   @NotNull
   List<Node> getChildren();
 
+  /**
+   * Adds a child
+   *
+   * @param child the child that is added
+   */
   void addChild( @NotNull Node child );
 
+  /**
+   * Detaches a child
+   *
+   * @param child the child that is detached
+   */
   void detachChild( @NotNull Node child );
 
 
@@ -37,5 +52,11 @@ public interface ChildrenSupport {
    */
   void setParentNode( @NotNull Node parentNode );
 
+  /**
+   * Whether the given child is managed by this ChildrenSupport
+   *
+   * @param child the child
+   * @return whether the given child is managed by this children support
+   */
   boolean isChild( @NotNull Node child );
 }

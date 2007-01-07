@@ -14,7 +14,7 @@ import java.util.List;
  * @author <a href="http://johannes-schneider.info">Johannes Schneider</a> -
  *         <a href="http://www.xore.de">Xore Systems</a>
  */
-public class LookupChangeListenerMock implements LookupChangeListener {
+public class LookupChangeListenerMock implements LookupChangeListener<Object> {
   private List<Entry<?>> entries = new ArrayList<Entry<?>>();
 
   public <T> void addExpected( @NotNull Class<T> type, @NotNull T oldValue, T newValue ) {
@@ -27,11 +27,11 @@ public class LookupChangeListenerMock implements LookupChangeListener {
     }
   }
 
-  public void lookupChange( @NotNull LookupChangedEvent event ) {
+  public void lookupChange( @NotNull LookupChangedEvent<? extends Object> event ) {
     verify( event );
   }
 
-  private void verify( LookupChangedEvent event ) {
+  private void verify( @NotNull LookupChangedEvent<? extends Object> event ) {
     Entry<?> lastEntry = entries.remove( entries.size() - 1 );
 
     Assert.assertEquals( lastEntry.type, event.getType() );
