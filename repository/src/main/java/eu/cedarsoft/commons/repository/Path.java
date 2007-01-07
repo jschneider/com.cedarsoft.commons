@@ -15,27 +15,43 @@ import java.util.List;
  *         <a href="http://www.xore.de">Xore Systems</a>
  */
 public class Path {
+  /**
+   * Creates a path for a node
+   *
+   * @param node the node
+   * @return the path for the given node
+   */
   @NotNull
-  public static Path buildPath( @NotNull Node node ) {
-    Path path = new Path();
+  static Path buildPath( @NotNull Node node ) {
+    List<String> elements = new ArrayList<String>();
 
     //add parent node
-    path.prependElement( node.getName() );
+    elements.add( 0, node.getName() );
 
     Node actualNode = node;
+    boolean isRoot = actualNode.isRoot();
     while ( ( actualNode = actualNode.getParent() ) != null ) {
-      path.prependElement( actualNode.getName() );
+      elements.add( 0, actualNode.getName() );
+      if ( actualNode.isRoot() ) {
+        isRoot = true;
+      }
     }
 
-    return path;
+    return new Path( !isRoot, elements );
   }
 
-  private void prependElement( @NotNull String element ) {
-    elements.add( 0, element );
-  }
-
+  /**
+   * Create a path object for a given path representation
+   *
+   * @param pathRepresentation the path representation
+   * @return the path
+   */
   @NotNull
-  public static Path newPath( @NotNull String pathRepresentation ) {
+  public static Path createPath( @NotNull String pathRepresentation ) {
+    if ( pathRepresentation.trim().length() == 0 ) {
+      throw new IllegalArgumentException( "Path representation is empty" );
+    }
+
     boolean relative = true;
     if ( pathRepresentation.startsWith( "/" ) ) {
       relative = false;
@@ -45,21 +61,36 @@ public class Path {
     return new Path( relative, pathRepresentation.split( "/" ) );
   }
 
-  private List<String> elements = new ArrayList<String>();
-  private boolean relative = true;
+  private final List<String> elements = new ArrayList<String>();
+  private final boolean relative;
 
-  private Path() {
+  private Path( boolean relative ) {
+    this.relative = relative;
+  }
+
+  public Path( boolean relative, @NotNull List<String> elements ) {
+    this( relative );
+    if ( elements.isEmpty() ) {
+      throw new IllegalArgumentException( "elements.size is 0" );
+    }
+
+    for ( String element : elements ) {
+      if ( element.length() == 0 ) {
+        continue;
+      }
+      this.elements.add( element );
+    }
   }
 
   public Path( boolean relative, @NotNull String... elements ) {
+    this( relative );
     if ( elements.length == 0 ) {
       throw new IllegalArgumentException( "elements.length is 0" );
     }
 
-    this.relative = relative;
     for ( String element : elements ) {
       if ( element.length() == 0 ) {
-        throw new IllegalStateException( "Invalid elements " + elements );
+        continue;
       }
       this.elements.add( element );
     }
@@ -71,6 +102,15 @@ public class Path {
 
   public boolean isRelative() {
     return relative;
+  }
+
+  /**
+   * Return a list containing all path elements
+   *
+   * @return a list containing all path elements
+   */
+  public List<String> getElements() {
+    return Collections.unmodifiableList( elements );
   }
 
   @NotNull
@@ -93,12 +133,46 @@ public class Path {
     return buffer.toString();
   }
 
+
   /**
-   * Return a list containing all path elements
+   * Creates a new path that represents the child with the given name
    *
-   * @return a list containing all path elements
+   * @param childName the name of the child
+   * @return the path of the child
    */
-  public List<String> getElements() {
-    return Collections.unmodifiableList( elements );
+  public Path createChild( @NotNull String childName ) {
+    List<String> childElements = new ArrayList<String>( elements.size() + 1 );
+    childElements.addAll( elements );
+    childElements.add( childName );
+    return new Path( isRelative(), childElements );
+  }
+
+  @Override
+  public boolean equals( Object obj ) {
+    if ( this == obj ) {
+      return true;
+    }
+    if ( obj == null || getClass() != obj.getClass() ) {
+      return false;
+    }
+
+    Path path = ( Path ) obj;
+
+    if ( relative != path.relative ) {
+      return false;
+    }
+    if ( elements != null ? !elements.equals( path.elements ) : path.elements != null ) {
+      return false;
+    }
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    int result;
+    result = ( elements != null ? elements.hashCode() : 0 );
+    result = 31 * result + ( relative ? 1 : 0 );
+    return result;
   }
 }

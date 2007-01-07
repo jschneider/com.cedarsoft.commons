@@ -42,6 +42,10 @@ public class DefaultNode implements Node {
     return childrenSupport.isChild( child );
   }
 
+  public boolean isRoot() {
+    return false;
+  }
+
   @NotNull
   public String getName() {
     return name;

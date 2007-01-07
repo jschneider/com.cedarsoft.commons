@@ -64,4 +64,11 @@ public interface Node {
    * @return true if the given node is a child, false otherwise
    */
   boolean isChild( @NotNull Node child );
+
+  /**
+   * Returns true if this node is the root of a {@link Repository}
+   *
+   * @return true if this node is the root, false otherwise
+   */
+  boolean isRoot();
 }
