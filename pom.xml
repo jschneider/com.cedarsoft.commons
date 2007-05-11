@@ -20,5 +20,6 @@
   <modules>
     <module>lookup</module>
     <module>repository</module>
+    <module>swing-presenter</module>
   </modules>
 </project>
