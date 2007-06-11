@@ -60,6 +60,6 @@
     <module>presenter</module>
     <module>swing-presenter</module>
     <module>struct</module>
-    <module>reflection</module>
+    <!--module>reflection</module-->
   </modules>
 </project>
