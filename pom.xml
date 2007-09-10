@@ -4,7 +4,7 @@
   <parent>
     <groupId>eu.cedarsoft</groupId>
     <artifactId>open</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -17,6 +17,7 @@
 
   <dependencyManagement>
     <dependencies>
+
       <dependency>
         <groupId>eu.cedarsoft.commons</groupId>
         <artifactId>struct</artifactId>
@@ -42,15 +43,15 @@
         <artifactId>swing-presenter</artifactId>
         <version>${pom.version}</version>
       </dependency>
+
     </dependencies>
   </dependencyManagement>
 
   <modules>
+    <module>struct</module>
     <module>lookup</module>
     <module>repository</module>
     <module>presenter</module>
     <module>swing-presenter</module>
-    <module>struct</module>
-    <!--module>reflection</module-->
   </modules>
 </project>
