@@ -17,7 +17,6 @@
 
   <dependencyManagement>
     <dependencies>
-
       <dependency>
         <groupId>eu.cedarsoft.commons</groupId>
         <artifactId>struct</artifactId>
@@ -43,7 +42,6 @@
         <artifactId>swing-presenter</artifactId>
         <version>${pom.version}</version>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
 
