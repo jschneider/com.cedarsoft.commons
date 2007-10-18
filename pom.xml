@@ -52,5 +52,6 @@
     <module>repository</module>
     <module>presenter</module>
     <module>swing-presenter</module>
+    <module>swing-presenter/demo</module>
   </modules>
 </project>
