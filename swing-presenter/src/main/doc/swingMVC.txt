@@ -1,0 +1,175 @@
+Swing MVC
+------------------
+
+Bereits seit etlicher Zeit hat sich das MVC-Prinzip durchgesetzt. Es ist dabei nicht immer einfach, die einzelnene
+Komponenten zu identifizieren; wenn dies jedoch gelingt und eine gute Implementierung erfolgt, hat das MVC-Prinzip
+unschätzbare Vorteile.
+Insbesondere eine sehr gute Wartbarkeit ist gewährleistet. Der Hauptvorteil liegt aber wohl in der
+optimalen Skalierbarkeit der Lösung.
+
+Java hat bei seinen Swing-Komponenten bereits vor Jahren eine strikte Trennung von UI-Komponente und Model eingeführt.
+Dies hat sich auch als richtig und gut erwiesen.
+
+Trotz der guten Erfahrungen mit MVC, finden sich interessanterweise kaum Projekte, die die gesamte UI und nicht
+nur die einzelnen Komponenten nach diesem Prinzip gestalten.
+Dies ist wahrscheinlich insbesondere der Tatsache geschuldet, dass es dafür von Sun kein fertiges Framework gibt.
+Die Identifikation der einzelnen Komponenten ist aber nunmal eine nichttriviale Angelegenheit, zusätzlich
+erfordert die Umsetzung initial einen erhöhten Aufwand. Dies führt dazu, dass heute oftmals die UIs fest
+verdrahtet und damit kaum skalierbar gestaltet sind.
+
+
+Ein Ansatz MVC auch im größeren Stile einzusetzen, soll hier dargestellt werden.
+Dieser Ansatz wurde in einem Swing-Projekt mit rund 800 Klassen und einer sehr umfangreichen sowie flexiblen
+GUI entwickelt und erfolgreich eingesetzt. Bei diesem Projekt hat sich insbesondere die Skalierbarkeit als
+äußerst wertvoll erwiesen.
+
+
+Das Prinzip:
+-----------------------
+Entscheidend ist die Identifikation und Trennung der View vom Model. Der Controller ergibt sich in der Regel dann
+von selbst bzw. kann initial auch etwas vernachlässigt werden, da er relativ einfach refaktorisiert werden kann.
+
+--> Die View
+Bei einer komplexen Swing-Oberfläche besteht die View jeweils aus einer Sammlung von Swing-Komponenten. Bezeichnend
+für eine solches Sammlung ist, dass es in Java kein vorbereitetes Model dafür gibt. Für kleinste und kleine Projekte
+ist dies auch nicht notwendig, bei einer etwas umfangreicheren Oberfläche dagegen sehr wohl.
+Eine solche Sammlung könnte zum Beispiel die Menüleiste darstellen. Diese wird durch ein JMenuBar repräsentiert, welche
+wiederum etliche JMenus enthält, die ihrerseits wieder andere JMenus oder JMenuItems (die einzelnen Einträge)
+enthalten.
+
+--> Das Model
+Es bietet sich nun an, die Informationen über die Menüstruktur in einem eigenen Model zu halten und die gesamte
+Menüleiste automatisch daraus zu generieren.
+Das Model enthält dann die notwendigen Informationen um die einzelnen Menüs bzw. ihre Inhalte erstellen zu können.
+Dies sind für die Menü-Einträge in der Regel Actions, für die Menüs die Informationen über Bezeichnung und Shortcut.
+
+Dieses Model ist nun nicht mehr eindimensional (wie z.B. bei einer JList) sondern ist baumartig aufgebaut.
+Die genaue Struktur des Baumes ist dabei nicht vorgegeben, da JMenus wiederum JMenus enthalten können.
+
+Das Model kann dabei über völlig verschiedene Wege und zu frei wählbaren Zeitpunkten erstellt werden. So könnte die
+Menüstruktur beispielsweise per XML vorgegeben, per Spring konfiguriert oder auch per Java-Code aufgebaut werden.
+Bei einem korrekt implementierten Kontroller ist es auch problemlos möglich, zur Laufzeit weitere Menüs und Einträge
+hinzuzufügen oder alte zu entfernen.
+
+--> Der Controller
+Der Controller ist in diesem Fall dafür verantwortlich die View aus dem Model zu erstellen und vor allem aktuell
+zu halten. D.h. anhand der Struktur des Models muss eine entsprechende Struktur aus Swing-Komponenten erstellt und
+diese mit dem Model verknüpft werden.
+Bei Änderungen des Models (zum Beispiel Hinzufügen oder Entfernen einzelner Menüs oder Einträge) muss die View
+entsprechend angepasst werden.
+Zusätzlich ist natürlich eine Verknüpfung der Swing-Komponenten mit den Actions aus dem Model notwendig.
+
+Ist der Aufwand der Controllers einmal gemacht, skaliert die Lösung sehr gut. Um neue, andere Menüs zu erstellen,
+ist nur noch der Aufbau eines Models notwendig (zum Beispiel für andere Fenster oder als kontextsensitives Popup-Menü).
+
+
+Konkret
+------------------
+
+--> Generisches Model
+Es hat sich gezeigt, dass (nahezu) alle Swing-Oberflächen in einer baumartigen Struktur wiedergegeben werden können.
+Deshalb bietet es sich an, ein generisches Modell zu erstellen, welches eben diese baumartige Struktur
+optimal repräsentiert und die notwendige Funktionalität zur Benachrichtigung des Controllers im Falle von
+strukturellen und inhaltlichen Änderungen bereitstellt.
+
+--> Generischer Controller
+Die Erstellung von Swing-Komponenten erfolgt jeweils nach einem ähnlichen Prinzip. Deshalb hat es sich als sehr
+hilfreich erwiesen ein Presenter-Framework zu erstellen, welche die Swing-Komponenten anhand des Models erstellen
+und vor allem aktuell halten.
+Durch die große Gemeinsamkeit der Swing-Komponenten ist es möglich, den Großteil der Komplexität in abstrakten
+Klassen zu halten und somit nur einmalig implementieren zu müssen.
+
+
+Für jeden Komponenten-Typ gibt es individuelle Presenter (z.B. für die JMenuBar), die genutzt werden. Im Model kann
+dann bei Bedarf ein eigener Presenter hinterlegt werden, der dann benutzt wird. Sollte im Model kein eigener
+Presenter (z.B. für ein JMenu) vorhanden sein, bringt jeder Presenter für seine Kinder einen Default-Presenter
+mit (der ein Standard-Menü erstellt).
+Es hat sich gezeigt, dass knapp 97% der Fälle mit einem Standard-Presenter abgedeckt werden können. Die restlichen
+Fälle werden durch die Möglichkeit der Bereitstellung eines individuellen Presenters im Model ohne Probleme
+abgedeckt.
+
+
+Schwierigkeiten
+------------------
+Die Schwierigkeiten bei der Umsetzung liegen insbesondere bei der erhöhten Komplexität des Models und vor allem
+der Presenter.
+Sind die Grundstrukturen für das Model und die Presenter einmal erstellt, können Erweiterungen sehr effizient
+umgesetzt werden.
+
+--> Presenter
+Die Presenter müssen in der Lage sein, die entsprechenden Komponenten erstellen zu können. Zusätzlich ist es notwendig
+die Kinder in der richtigen Reihenfolge hinzuzufügen. Sollten jetzt Kinder entfernt werden, muss die entsprechende
+Komponente ebenfalls wieder aus der Hierarchie entfernt werden.
+Dazu ist ein Mapping von Model zu Komponente notwendig und ebenso ein relativ umfangreiches System von Events, die vom
+Model unterstützt werden müssen.
+Zusätzlich muss bei Änderungen am Model die aktuelle View aktualisiert werden (wenn sich z.B. Labels oder die
+Action verändern).
+
+--> Model
+Das Model muss eine baumartige Struktur repräsentieren und für jeden Knoten mehrere Objekte (wie z.B. Actions oder
+Presenter) halten können. Außerdem muss gewährleistet sein, dass sämtliche Änderungen durch Events korrekt weiter
+gemeldet werden, damit die Presenter die Darstellung korrekt vornehmen können.
+
+
+Implementierung für Swing
+-------------------------
+Dieses Prinzip ist natürlich grundsätzlich für viele Bereiche denkbar (z.B. auch SWT). Momentan besteht eine
+Implementierung für Swing.
+Diese Implmentierung besteht aus einem umfangreichen Model, welches die notwendige Funktionalität beinhaltet,
+um eine baumartige Struktur mit entsprechendem Events darstellen zu können. In diesem Model können generisch
+Objekte zu jeden Knoten abgelegt werden, so dass eine Erweiterung des Models nicht notwendig ist.
+
+Es besteht außerdem eine Reihe von Presentern, die die wichtigsten Swing-Komponenten erstellen könnnen. Dabei
+sind etliche abstrakte Basisklassen vorhanden, so dass die Implementierung eines neuen Presenters in wenigen
+Zeiten Code - bei Action-basierten Komponenten sogar mit nur einer Zeile - abgeschlossen sind.
+
+
+
+--------------------------
+Beispiel:
+--------------------------
+In diesem Beispiel wird ein einfaches JMenu mit vier Einträgen erstellt.
+
+--> Aufbau des Models
+
+Aufbau eines einfaches Models mit einem Root-Knoten und vier Kindern mit jeweils einer Action. Hier erfolgt der
+Aufbau des Models per Java-Code. Es ist natürlich problemlos möglich, dies z.B. per Spring zu erledigen.
+
+  //Erstellt den Root-Knoten mit einer Action (die das Label vorgibt)
+  Node root = new DefaultNode( name, Lookups.singletonLookup( Action.class, menuAction ) );
+
+  //Fügt jetzt vier Kinder hinzu
+  root.addChild( new DefaultNode( "1", Lookups.singletonLookup( Action.class, action0 ) ) );
+  root.addChild( new DefaultNode( "2", Lookups.singletonLookup( Action.class, action1 ) ) );
+  root.addChild( new DefaultNode( "3", Lookups.singletonLookup( Action.class, action2 ) ) );
+  root.addChild( new DefaultNode( "4", Lookups.singletonLookup( Action.class, action3 ) ) );
+
+--> Erstellung des Menüs:
+
+  //Erstellt einen neuen presenter
+  JMenuPresenter presenter = new JMenuPresenter();
+  //Mit Hilfe des Presenters kann jetzt das komplette Menü erstellt werden
+  JMenu menu = presenter.createPresentation( root );
+
+
+Das Menü, welches mit Hilfe des Presenters erstellt wurde, ist nun mit dem Model verknüpft. Sollte also eine
+Action verändert oder ausgetauscht werden, ein Eintrag hinzugefügt oder entfernt werden, wird das JMenu
+sofort und ohne weitere Eingriffe aktualisiert.
+
+
+--- Erweiterungen
+Um jetzt einen eigenen Presenter einbauen zu können, wird dieser einfach in der Knotenstruktur mit abgelegt. Das
+Model wird dann z.B. so aufgebaut:
+
+  //Erstellt den Root-Knoten mit einer Action (die das Label vorgibt)
+  Node root = new DefaultNode( name, Lookups.singletonLookup( Action.class, menuAction ) );
+
+  //Fügt jetzt vier Kinder hinzu
+  root.addChild( new DefaultNode( "1", Lookups.dynamicLookup( action0, myCustomPresenter ) ) );
+  root.addChild( new DefaultNode( "2", Lookups.singletonLookup( Action.class, action1 ) ) );
+  root.addChild( new DefaultNode( "3", Lookups.singletonLookup( Action.class, action2 ) ) );
+  root.addChild( new DefaultNode( "4", Lookups.singletonLookup( Action.class, action3 ) ) );
+
+Die Implementierung von "myCustomPresenter" kann nun völlig frei gewählt werden und z.B. auch ein Untermenü mit
+dynamisch generierten Einträgen erstellen.
+

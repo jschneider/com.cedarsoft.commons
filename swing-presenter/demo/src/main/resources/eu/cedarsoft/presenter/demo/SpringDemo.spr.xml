@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <bean id="menuNode" class="eu.cedarsoft.commons.struct.DefaultNode">
+    <constructor-arg value="menuNode" />
+
+    <property name="children">
+      <list>
+
+        <bean class="eu.cedarsoft.commons.struct.DefaultNode">
+          <constructor-arg value="fileNode" />
+          <constructor-arg>
+            <bean class="eu.cedarsoft.lookup.SingletonLookup">
+              <constructor-arg value="javax.swing.Action" />
+              <constructor-arg>
+                <bean class="eu.cedarsoft.presenter.demo.MenuDemo$FileAction" />
+              </constructor-arg>
+            </bean>
+          </constructor-arg>
+
+
+          <property name="children">
+            <list>
+              <bean class="eu.cedarsoft.presenter.demo.ActionNodeFactory">
+                <constructor-arg value="open" />
+                <constructor-arg>
+                  <bean class="eu.cedarsoft.presenter.demo.MenuDemo$OpenAction" />
+                </constructor-arg>
+              </bean>
+
+              <bean class="eu.cedarsoft.presenter.demo.ActionNodeFactory">
+                <constructor-arg value="close" />
+                <constructor-arg>
+                  <bean class="eu.cedarsoft.presenter.demo.MenuDemo$CloseAction" />
+                </constructor-arg>
+              </bean>
+
+              <bean class="eu.cedarsoft.presenter.demo.ActionNodeFactory">
+                <constructor-arg value="counter" />
+                <constructor-arg>
+                  <bean class="eu.cedarsoft.presenter.demo.MenuDemo$CounterAction" />
+                </constructor-arg>
+              </bean>
+            </list>
+          </property>
+
+        </bean>
+
+      </list>
+    </property>
+  </bean>
+
+</beans>
