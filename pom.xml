@@ -12,7 +12,7 @@
   <artifactId>commons</artifactId>
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>Cedarsoft Projects</name>
+  <name>cedarsoft Commons</name>
   <url>http://www.cedarsoft.de</url>
   
   <scm>
