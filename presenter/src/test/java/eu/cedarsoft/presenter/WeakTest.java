@@ -13,7 +13,7 @@ import java.lang.ref.WeakReference;
  */
 public class WeakTest extends TestCase {
 
-  public void testIt() {
+  public void testIt() throws InterruptedException {
     DefaultNode root = new DefaultNode( "root" );
     root.addChild( new DefaultNode( "child" ) );
 
@@ -21,13 +21,13 @@ public class WeakTest extends TestCase {
     assertEquals( "thePresentation", presenterReference.get().present( root ) );
 
     System.gc();
-    System.gc();
-    System.gc();
-    System.gc();
+    assertNull( presenterReference.get() );
 
-    //    assertNull( presenterReference.get() );
+    if ( presenterReference.get() != null ) {
+      System.out.println( "Reference found!" );
+      Thread.sleep( 500000 );
+    }
   }
-
 
   public static class MyPresenter extends AbstractPresenter<String> {
     protected boolean shallAddChildren() {

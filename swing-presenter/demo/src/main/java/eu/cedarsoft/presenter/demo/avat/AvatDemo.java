@@ -37,6 +37,9 @@ public class AvatDemo extends AvatMenuDemo {
 
 
     JPanel rightPanel = new JPanel( new BorderLayout() );
+
+    //ich neme einfach das zweite Kind - hier muss der Mask-Manager entscheiden, welcher Knoten benutzt werden soll
+    //Das zweite Kind deshalb, weil das die meisten Unterpunkte hat.
     rightPanel.add( new JComboBoxPresenter().present( rootNode.getChildren().get( 1 ) ), BorderLayout.NORTH );
 
 
@@ -47,6 +50,8 @@ public class AvatDemo extends AvatMenuDemo {
       protected Presenter<? extends JComponent> getChildPresenter( @NotNull StructPart child ) {
         return new JButtonPresenter();
       }
+
+      //Hier nehme ich einfach das erste Kind
     }.present( rootNode.getChildren().get( 1 ).getChildren().get( 0 ) ) );
 
     rightPanel.add( buttons );

@@ -4,16 +4,15 @@
   <parent>
     <artifactId>commons</artifactId>
     <groupId>eu.cedarsoft</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.9-SNAPSHOT</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>eu.cedarsoft.commons</groupId>
   <artifactId>swing-presenter</artifactId>
   <name>Swing Presenter</name>
-  <version>1.0-SNAPSHOT</version>
-  <url>http://cedarsoft.eu</url>
-
+  <version>0.9-SNAPSHOT</version>
+  p
   <dependencies>
     <dependency>
       <groupId>eu.cedarsoft.commons</groupId>

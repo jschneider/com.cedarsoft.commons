@@ -7,6 +7,8 @@ import eu.cedarsoft.lookup.Lookup;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.ref.WeakReference;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * An abstract implementation of {@link Presenter}.
@@ -14,6 +16,12 @@ import java.lang.ref.WeakReference;
  * @param <T> the type of the presentation that is created
  */
 public abstract class AbstractPresenter<T> implements Presenter<T> {
+  /**
+   * Holds the references of the structure listeners.
+   */
+  @SuppressWarnings( {"MismatchedQueryAndUpdateOfCollection"} )
+  private Set<StructureListener> structureListeners = new HashSet<StructureListener>();
+
   /**
    * Creates the presentation for the given struct. This method should not be overridden.
    *
@@ -38,25 +46,10 @@ public abstract class AbstractPresenter<T> implements Presenter<T> {
         }
       }
 
-      struct.addStructureListener( new StructureListener() {
-        public void childAdded( @NotNull StructureChangedEvent event ) {
-          StructPart child = event.getStructPart();
-          T presentation = weakPresentationReference.get();
-          if ( presentation != null ) {
-            addChildPresentation( presentation, child, calculateIndex( event ) );
-          }
-        }
-
-        public void childDetached( @NotNull StructureChangedEvent event ) {
-          StructPart child = event.getStructPart();
-          T presentation = weakPresentationReference.get();
-          if ( presentation != null ) {
-            removeChildPresentation( presentation, child, event.getIndex() );
-          }
-        }
-      } );
+      StructureListener structureListener = new ChildStructureListener<T>( weakPresentationReference, this );
+      structureListeners.add( structureListener );
+      struct.addStructureListenerWeak( structureListener );
     }
-
     return presentation;
   }
 
@@ -114,4 +107,35 @@ public abstract class AbstractPresenter<T> implements Presenter<T> {
    */
   @NotNull
   protected abstract T createPresentation();
+
+  /**
+   * Adds/removes the child presentations if children are added/detached
+   */
+  private static class ChildStructureListener<T> implements StructureListener {
+    @NotNull
+    private final WeakReference<T> weakPresentationReference;
+    @NotNull
+    private final AbstractPresenter<T> presenter;
+
+    private ChildStructureListener( @NotNull WeakReference<T> weakPresentationReference, @NotNull AbstractPresenter<T> presenter ) {
+      this.weakPresentationReference = weakPresentationReference;
+      this.presenter = presenter;
+    }
+
+    public void childAdded( @NotNull StructureChangedEvent event ) {
+      StructPart child = event.getStructPart();
+      T presentation = weakPresentationReference.get();
+      if ( presentation != null ) {
+        presenter.addChildPresentation( presentation, child, presenter.calculateIndex( event ) );
+      }
+    }
+
+    public void childDetached( @NotNull StructureChangedEvent event ) {
+      StructPart child = event.getStructPart();
+      T presentation = weakPresentationReference.get();
+      if ( presentation != null ) {
+        presenter.removeChildPresentation( presentation, child, event.getIndex() );
+      }
+    }
+  }
 }
