@@ -12,16 +12,11 @@
   <artifactId>swing-presenter</artifactId>
   <name>Swing Presenter</name>
   <version>0.9-SNAPSHOT</version>
-  p
+  
   <dependencies>
     <dependency>
       <groupId>eu.cedarsoft.commons</groupId>
       <artifactId>presenter</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>eu.cedarsoft.utils</groupId>
-      <artifactId>common</artifactId>
     </dependency>
   </dependencies>
 
