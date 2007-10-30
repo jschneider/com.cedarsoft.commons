@@ -3,14 +3,14 @@
   <parent>
     <artifactId>commons</artifactId>
     <groupId>eu.cedarsoft</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>eu.cedarsoft.commons.swing-presenter</groupId>
   <artifactId>demo</artifactId>
   <name>Swing Presenter Demo</name>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
 
   <dependencies>
     <dependency>
