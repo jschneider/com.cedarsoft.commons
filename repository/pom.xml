@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+    <artifactId>commons</artifactId>
+    <groupId>eu.cedarsoft</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>eu.cedarsoft.commons</groupId>
+  <artifactId>repository</artifactId>
+  <name>Repository</name>
+  <version>1.0-SNAPSHOT</version>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+    <dependency>
+      <groupId>eu.cedarsoft.commons</groupId>
+      <artifactId>struct</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>
