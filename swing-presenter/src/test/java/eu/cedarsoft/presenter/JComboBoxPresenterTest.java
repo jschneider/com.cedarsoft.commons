@@ -83,6 +83,7 @@ public class JComboBoxPresenterTest extends TestCase {
   }
 
   public void testWeak() throws InterruptedException {
+    Thread.sleep( 500 );
     WeakReference<Object> reference = new WeakReference<Object>( new JComboBoxPresenter().present( root ) );
     assertNotNull( reference.get() );
     System.gc();
@@ -90,6 +91,7 @@ public class JComboBoxPresenterTest extends TestCase {
     System.gc();
     System.gc();
     System.gc();
+    Thread.sleep( 500 );
     System.gc();
     System.gc();
     System.gc();
