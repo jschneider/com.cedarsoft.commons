@@ -90,7 +90,10 @@ public class JComboBoxPresenterTest extends TestCase {
     System.gc();
     System.gc();
     System.gc();
-    //    Thread.sleep( 5000000 );
+    System.gc();
+    System.gc();
+    System.gc();
+    System.gc();
     assertNull( reference.get() );
   }
 
