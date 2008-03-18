@@ -28,6 +28,15 @@ public class DynamicLookup implements LookupStore {
   }
 
   /**
+   * Clears the lookup
+   */
+  public void clear() {
+    Map<Class<?>, Object> oldEntries = new HashMap<Class<?>, Object>( store );
+    store.clear();
+    lcs.fireDelta( oldEntries, this );
+  }
+
+  /**
    * The type is ignored
    *
    * @param type  the ignored type
