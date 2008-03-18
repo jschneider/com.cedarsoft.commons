@@ -70,11 +70,6 @@
     <module>presenter</module>
     <module>swing-presenter</module>
     <module>swing-presenter/demo</module>
-    <module>swing-presenter/avat-demo</module>
+    <!--<module>swing-presenter/avat-demo</module>-->
   </modules>
-
-  <build>
-    <plugins>
-    </plugins>
-  </build>
 </project>
