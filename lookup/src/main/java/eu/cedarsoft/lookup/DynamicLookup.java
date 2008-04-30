@@ -12,8 +12,10 @@ import java.util.Map;
  * A dynamic lookup
  */
 public class DynamicLookup implements LookupStore {
+  @NotNull
   @SuppressWarnings( {"ThisEscapedInObjectConstruction"} )
   private final LookupChangeSupport lcs = new LookupChangeSupport( this );
+  @NotNull
   private final Map<Class<?>, Object> store = new HashMap<Class<?>, Object>();//todo use type registry(?)
 
   /**
@@ -64,12 +66,45 @@ public class DynamicLookup implements LookupStore {
     }
   }
 
+  public final void removeValue( @NotNull Object value ) {
+    //Create the store map
+    //Super classes
+    Class<?> type = value.getClass();
+    while ( type != null ) {
+      Object oldValue = store.remove( type );
+      lcs.fireLookupChanged( ( ( Class<Object> ) type ), oldValue, value );
+      removeInterfaces( value, type );
+      type = type.getSuperclass();
+    }
+  }
+
   private <T> void addInterfaces( @NotNull Object value, @NotNull Class<?> superType ) {
     //Interfaces
     for ( Class<?> type : superType.getInterfaces() ) {
       Object oldValue = store.put( type, value );
       lcs.fireLookupChanged( ( ( Class<Object> ) type ), oldValue, value );
       addInterfaces( value, type );
+    }
+  }
+
+  private <T> void removeInterfaces( @NotNull Object value, @NotNull Class<?> superType ) {
+    //Interfaces
+    for ( Class<?> type : superType.getInterfaces() ) {
+      Object oldValue = store.remove( type );
+      lcs.fireLookupChanged( ( ( Class<Object> ) type ), oldValue, value );
+      addInterfaces( value, type );
+    }
+  }
+
+  public final void addValues( @NotNull Lookup lookup ) {
+    for ( Map.Entry<Class<?>, Object> entry : lookup.lookups().entrySet() ) {
+      addValue( entry.getValue() );
+    }
+  }
+
+  public final void removeValues( @NotNull Lookup lookup ) {
+    for ( Map.Entry<Class<?>, Object> entry : lookup.lookups().entrySet() ) {
+      removeValue( entry.getValue() );
     }
   }
 

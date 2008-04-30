@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<site>
+<project>
   <bannerLeft>
     <name>${project.name}</name>
     <src>_logo_.jpg</src>
@@ -26,5 +26,5 @@
     <menu ref="reports" inherit="bottom" />
 
   </body>
-</site>
+</project>
 
