@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * A dynamic lookup
  */
-public class DynamicLookup implements LookupStore {
+public class DynamicLookup extends AbstractLookup implements LookupStore {
   @NotNull
   @SuppressWarnings( {"ThisEscapedInObjectConstruction"} )
   private final LookupChangeSupport lcs = new LookupChangeSupport( this );

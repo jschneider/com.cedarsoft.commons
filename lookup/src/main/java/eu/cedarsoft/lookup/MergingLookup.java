@@ -11,7 +11,7 @@ import java.util.Map;
  * is resolved using the first.
  * Only if no object of a given type is contained within the first lookup the second lookup is queried.
  */
-public class MergingLookup implements Lookup {
+public class MergingLookup extends AbstractLookup implements Lookup {
   private LookupChangeSupport lcs = new LookupChangeSupport( this );
 
   private Lookup first;

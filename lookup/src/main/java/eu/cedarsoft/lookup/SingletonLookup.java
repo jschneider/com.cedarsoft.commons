@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * This is a simpel Lookup that contains just one object under a given key
  */
-public class SingletonLookup<T> implements Lookup {
+public class SingletonLookup<T> extends AbstractLookup {
   private final T singleton;
   private final Class<T> singletonType;
 

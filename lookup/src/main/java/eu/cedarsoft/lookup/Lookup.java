@@ -19,6 +19,17 @@ public interface Lookup {
       <T> T lookup( @NotNull Class<T> type );
 
   /**
+   * Lookks up a given object
+   *
+   * @param type the type
+   * @return the looked up object
+   *
+   * @throws IllegalArgumentException if no object has been found
+   */
+  @NotNull
+      <T> T lookupNonNull( @NotNull Class<T> type ) throws IllegalArgumentException;
+
+  /**
    * Retuns a  map containing the available lookup objects.
    * This method can throw an {@link UnsupportedOperationException} if the map is not available.
    * If no exception is thrown the map must contain every possible lookup object.

@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Lazy implementation of lookup. This class will call {@link #getValue()} as late as possible and cache the results.
  */
-public abstract class LazyLookup<T> implements Lookup {
+public abstract class LazyLookup<T> extends AbstractLookup {
   /**
    * The instance.
    */

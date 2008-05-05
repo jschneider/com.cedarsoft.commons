@@ -103,7 +103,7 @@ public class Lookups {
     return lookup;
   }
 
-  private static class EmptyLookup implements Lookup {
+  private static class EmptyLookup extends AbstractLookup {
     @Nullable
     public <T> T lookup( @NotNull Class<T> type ) {
       return null;

@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * This is a simple lookup implementation that is backed up by a HashMap
  */
-public class MappedLookup implements LookupStore {
+public class MappedLookup extends AbstractLookup implements LookupStore {
   protected Map<Class<?>, Object> store = new HashMap<Class<?>, Object>();
   protected LookupChangeSupport lcs = new LookupChangeSupport( this );
 
