@@ -3,6 +3,8 @@ package eu.cedarsoft.lookup;
 import junit.framework.TestCase;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
+
 /**
  *
  */
@@ -15,6 +17,23 @@ public class LookupChangeSupportTest extends TestCase {
     super.setUp();
     lookup = new MockLookup();
     lookupChangeSupport = lookup.getLookupChangeSupport();
+  }
+
+  public void testListenersSameDontFire() {
+    LookupChangeListenerMock listener = new LookupChangeListenerMock();
+    lookupChangeSupport.addLookupChangeListener( listener );
+
+    listener.verify();
+    lookupChangeSupport.fireLookupChanged( String.class, "a", "a" );
+    listener.verify();
+    lookupChangeSupport.fireLookupChanged( new LookupChangeEvent<String>( lookup, String.class, "b", "b" ) );
+    listener.verify();
+    lookupChangeSupport.fireDelta( lookup, lookup );
+    listener.verify();
+    lookupChangeSupport.fireDelta( Lookups.singletonLookup( String.class, "c" ), Lookups.singletonLookup( String.class, "c" ) );
+    listener.verify();
+    lookupChangeSupport.fireDelta( Collections.<Class<?>, Object>singletonMap( String.class, "c" ), Lookups.singletonLookup( String.class, "c" ) );
+    listener.verify();
   }
 
   public void testListener() {

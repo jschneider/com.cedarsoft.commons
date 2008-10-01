@@ -132,10 +132,18 @@ public class LookupChangeSupport {
   }
 
   public <T> void fireLookupChanged( @NotNull Class<? super T> type, @Nullable T oldValue, @Nullable T value ) {
+    //noinspection ObjectEquality
+    if ( oldValue == value ) {
+      return;
+    }
     fireLookupChanged( new LookupChangeEvent<T>( source, type, oldValue, value ) );
   }
 
   public <T> void fireLookupChanged( @NotNull LookupChangeEvent<T> event ) {
+    if ( event.getNewValue() == event.getOldValue() ) {
+      return;
+    }
+
     {
       LookupChangeListener<? super T>[] listenerArray = findListeners( event.getType() );
       if ( listenerArray.length > 0 ) {
