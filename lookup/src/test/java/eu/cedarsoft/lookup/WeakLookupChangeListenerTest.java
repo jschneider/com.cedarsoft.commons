@@ -23,7 +23,7 @@ public class WeakLookupChangeListenerTest extends TestCase {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
       }
     };
-    lookup.addLookupChangeListenerWeak( listener );
+    lookup.addChangeListenerWeak( listener );
     assertEquals( 1, lookup.getLookupChangeSupport().getListeners().size() );
     assertSame( listener, ( ( WeakLookupChangeListener<?> ) lookup.getLookupChangeSupport().getListeners().get( 0 ) ).getWrappedListener() );
     lookup.removeChangeListener( listener );
@@ -35,14 +35,14 @@ public class WeakLookupChangeListenerTest extends TestCase {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
       }
     };
-    lookup.addLookupChangeListenerWeak( listener );
+    lookup.addChangeListenerWeak( listener );
     assertEquals( 1, lookup.getLookupChangeSupport().getListeners().size() );
     assertSame( listener, ( ( WeakLookupChangeListener<?> ) lookup.getLookupChangeSupport().getListeners().get( 0 ) ).getWrappedListener() );
   }
 
   public void testWeakDirect() {
     {
-      lookup.addLookupChangeListenerWeak( new LookupChangeListener<String>() {
+      lookup.addChangeListenerWeak( new LookupChangeListener<String>() {
         public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
         }
       } );
@@ -113,7 +113,7 @@ public class WeakLookupChangeListenerTest extends TestCase {
   }
 
   public void testWeakAdd() {
-    lookup.addLookupChangeListenerWeak( String.class, new LookupChangeListener<String>() {
+    lookup.addChangeListenerWeak( String.class, new LookupChangeListener<String>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
       }
     } );

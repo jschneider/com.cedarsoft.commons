@@ -1,7 +1,6 @@
 package eu.cedarsoft.lookup;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * A lookup store is an extended lookup with write access
@@ -14,8 +13,4 @@ public interface LookupStore extends Lookup {
    * @param value the value
    */
   <T> void store( @NotNull Class<T> type, @NotNull T value );
-
-  void addLookupChangeListenerWeak( @NotNull LookupChangeListener<?> lookupChangeListener );
-
-  <T> void addLookupChangeListenerWeak( @Nullable Class<T> type, @NotNull LookupChangeListener<T> lookupChangeListener );
 }

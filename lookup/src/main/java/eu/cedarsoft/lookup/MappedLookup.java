@@ -53,35 +53,31 @@ public class MappedLookup extends AbstractLookup implements LookupStore {
   }
 
   public void addChangeListenerWeak( @NotNull LookupChangeListener<?> lookupChangeListener ) {
-    lcs.addLookupChangeListenerWeak( lookupChangeListener );
+    lcs.addChangeListenerWeak( lookupChangeListener );
   }
 
   public <T> void addChangeListenerWeak( @NotNull Class<T> type, @NotNull LookupChangeListener<? super T> lookupChangeListener ) {
-    lcs.addLookupChangeListenerWeak( type, lookupChangeListener );
+    lcs.addChangeListenerWeak( type, lookupChangeListener );
   }
 
   public void addLookupChangeListenerWeak( @NotNull LookupChangeListener<?> lookupChangeListener ) {
-    lcs.addLookupChangeListenerWeak( lookupChangeListener );
-  }
-
-  public <T> void addLookupChangeListenerWeak( @Nullable Class<T> type, @NotNull LookupChangeListener<T> lookupChangeListener ) {
-    lcs.addLookupChangeListenerWeak( type, lookupChangeListener );
+    lcs.addChangeListenerWeak( lookupChangeListener );
   }
 
   public void addChangeListener( @NotNull LookupChangeListener<?> lookupChangeListener ) {
-    lcs.addLookupChangeListener( lookupChangeListener );
+    lcs.addChangeListener( lookupChangeListener );
   }
 
   public <T> void addChangeListener( @NotNull Class<T> type, @NotNull LookupChangeListener<? super T> lookupChangeListener ) {
-    lcs.addLookupChangeListener( type, lookupChangeListener );
+    lcs.addChangeListener( type, lookupChangeListener );
   }
 
   public void removeChangeListener( @NotNull LookupChangeListener<?> lookupChangeListener ) {
-    lcs.removeLookupChangeListener( lookupChangeListener );
+    lcs.removeChangeListener( lookupChangeListener );
   }
 
   public <T> void removeChangeListener( @NotNull Class<T> type, @NotNull LookupChangeListener<? super T> lookupChangeListener ) {
-    lcs.removeLookupChangeListener( type, lookupChangeListener );
+    lcs.removeChangeListener( type, lookupChangeListener );
   }
 }
 

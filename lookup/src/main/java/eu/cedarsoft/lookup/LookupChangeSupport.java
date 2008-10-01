@@ -40,7 +40,7 @@ public class LookupChangeSupport {
    * @param lookupChangeListener the listener that is added
    */
   public <T> void bind( @NotNull Class<T> type, @NotNull LookupChangeListener<? super T> lookupChangeListener ) {
-    addLookupChangeListener( type, lookupChangeListener );
+    addChangeListener( type, lookupChangeListener );
     lookupChangeListener.lookupChanged( new LookupChangeEvent<T>( source, type, null, source.lookup( type ) ) );
   }
 
@@ -64,7 +64,7 @@ public class LookupChangeSupport {
    * @param lookupChangeListener the listener that is added
    */
   public <T> void bindWeak( @NotNull Class<T> type, @NotNull LookupChangeListener<? super T> lookupChangeListener ) {
-    addLookupChangeListenerWeak( type, lookupChangeListener );
+    addChangeListenerWeak( type, lookupChangeListener );
     lookupChangeListener.lookupChanged( new LookupChangeEvent<T>( source, type, null, source.lookup( type ) ) );
   }
 
@@ -86,8 +86,8 @@ public class LookupChangeSupport {
    *
    * @param lookupChangeListener the listener that is wrapped and added
    */
-  public void addLookupChangeListenerWeak( @NotNull LookupChangeListener<?> lookupChangeListener ) {
-    addLookupChangeListener( WeakLookupChangeListener.wrap( lookupChangeListener ) );
+  public void addChangeListenerWeak( @NotNull LookupChangeListener<?> lookupChangeListener ) {
+    addChangeListener( WeakLookupChangeListener.wrap( lookupChangeListener ) );
   }
 
   /**
@@ -96,15 +96,15 @@ public class LookupChangeSupport {
    * @param type                 the type the listener is registered for
    * @param lookupChangeListener the listener that is wrapped and added
    */
-  public <T> void addLookupChangeListenerWeak( @Nullable Class<T> type, @NotNull LookupChangeListener<? super T> lookupChangeListener ) {
-    addLookupChangeListener( type, WeakLookupChangeListener.wrap( type, lookupChangeListener ) );
+  public <T> void addChangeListenerWeak( @Nullable Class<T> type, @NotNull LookupChangeListener<? super T> lookupChangeListener ) {
+    addChangeListener( type, WeakLookupChangeListener.wrap( type, lookupChangeListener ) );
   }
 
-  public void addLookupChangeListener( @NotNull LookupChangeListener<?> lookupChangeListener ) {
-    addLookupChangeListener( null, lookupChangeListener );
+  public void addChangeListener( @NotNull LookupChangeListener<?> lookupChangeListener ) {
+    addChangeListener( null, lookupChangeListener );
   }
 
-  public void addLookupChangeListener( @Nullable Class<?> type, @NotNull LookupChangeListener<?> lookupChangeListener ) {
+  public void addChangeListener( @Nullable Class<?> type, @NotNull LookupChangeListener<?> lookupChangeListener ) {
     Object[] newListeners = new Object[listeners.length + 2];
     System.arraycopy( listeners, 0, newListeners, 0, listeners.length );
     newListeners[listeners.length] = type;
@@ -112,11 +112,11 @@ public class LookupChangeSupport {
     this.listeners = newListeners;
   }
 
-  public void removeLookupChangeListener( @NotNull LookupChangeListener<?> lookupChangeListener ) {
-    removeLookupChangeListener( null, lookupChangeListener );
+  public void removeChangeListener( @NotNull LookupChangeListener<?> lookupChangeListener ) {
+    removeChangeListener( null, lookupChangeListener );
   }
 
-  public void removeLookupChangeListener( @Nullable Class<?> type, @NotNull LookupChangeListener<?> lookupChangeListener ) {
+  public void removeChangeListener( @Nullable Class<?> type, @NotNull LookupChangeListener<?> lookupChangeListener ) {
     for ( int i = 0; i < listeners.length; i += 2 ) {
       if ( listeners[i] == type ) {
         Object listener = listeners[i + 1];

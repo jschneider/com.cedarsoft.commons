@@ -21,7 +21,7 @@ public class LookupChangeSupportTest extends TestCase {
 
   public void testListenersSameDontFire() {
     LookupChangeListenerMock listener = new LookupChangeListenerMock();
-    lookupChangeSupport.addLookupChangeListener( listener );
+    lookupChangeSupport.addChangeListener( listener );
 
     listener.verify();
     lookupChangeSupport.fireLookupChanged( String.class, "a", "a" );
@@ -59,11 +59,11 @@ public class LookupChangeSupportTest extends TestCase {
   }
 
   private void addWeakListener() {
-    lookupChangeSupport.addLookupChangeListenerWeak( String.class, new LookupChangeListener<String>() {
+    lookupChangeSupport.addChangeListenerWeak( String.class, new LookupChangeListener<String>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
       }
     } );
-    lookupChangeSupport.addLookupChangeListenerWeak( new LookupChangeListener<Object>() {
+    lookupChangeSupport.addChangeListenerWeak( new LookupChangeListener<Object>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends Object> event ) {
       }
     } );
@@ -71,24 +71,24 @@ public class LookupChangeSupportTest extends TestCase {
 
   public void testAddListeners() {
     assertEquals( 0, lookupChangeSupport.getListeners().size() );
-    lookupChangeSupport.addLookupChangeListener( String.class, new LookupChangeListener<Object>() {
+    lookupChangeSupport.addChangeListener( String.class, new LookupChangeListener<Object>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends Object> event ) {
       }
     } );
     assertEquals( 1, lookupChangeSupport.getListeners().size() );
-    lookupChangeSupport.addLookupChangeListener( new LookupChangeListener<Object>() {
+    lookupChangeSupport.addChangeListener( new LookupChangeListener<Object>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends Object> event ) {
       }
     } );
 
     assertEquals( 2, lookupChangeSupport.getListeners().size() );
 
-    lookupChangeSupport.addLookupChangeListener( String.class, new LookupChangeListener<Object>() {
+    lookupChangeSupport.addChangeListener( String.class, new LookupChangeListener<Object>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends Object> event ) {
       }
     } );
     assertEquals( 3, lookupChangeSupport.getListeners().size() );
-    lookupChangeSupport.addLookupChangeListener( String.class, new LookupChangeListener<Object>() {
+    lookupChangeSupport.addChangeListener( String.class, new LookupChangeListener<Object>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends Object> event ) {
       }
     } );
