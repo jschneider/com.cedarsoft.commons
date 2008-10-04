@@ -54,58 +54,100 @@ public class DynamicLookup extends AbstractLookup implements LookupStore {
    *
    * @param value the value that is added
    */
-  public final void addValue( @NotNull Object value ) {
+  public final boolean addValue( @NotNull Object value ) {
+    boolean added = false;
+
     //Create the store map
     //Super classes
     Class<?> type = value.getClass();
     while ( type != null ) {
       Object oldValue = store.put( type, value );
+      //noinspection ObjectEquality
+      added = added || oldValue != value;
+
       lcs.fireLookupChanged( ( ( Class<Object> ) type ), oldValue, value );
-      addInterfaces( value, type );
+
+      boolean addedInterface = addInterfaces( value, type );
+      added = added || addedInterface;
+
       type = type.getSuperclass();
     }
+
+    return added;
   }
 
-  public final void removeValue( @NotNull Object value ) {
+  public final boolean removeValue( @NotNull Object value ) {
+    boolean removed = false;
+
     //Create the store map
     //Super classes
     Class<?> type = value.getClass();
     while ( type != null ) {
       Object oldValue = store.remove( type );
+      removed = removed || oldValue != null;
+
       lcs.fireLookupChanged( ( ( Class<Object> ) type ), oldValue, value );
-      removeInterfaces( value, type );
+      boolean removedInterface = removeInterfaces( value, type );
+      removed = removed || removedInterface;
+
       type = type.getSuperclass();
     }
+
+    return removed;
   }
 
-  private void addInterfaces( @NotNull Object value, @NotNull Class<?> superType ) {
+  private boolean addInterfaces( @NotNull Object value, @NotNull Class<?> superType ) {
+    boolean added = false;
+
     //Interfaces
     for ( Class<?> type : superType.getInterfaces() ) {
       Object oldValue = store.put( type, value );
+      //noinspection ObjectEquality
+      added = added || oldValue != value;
+
       lcs.fireLookupChanged( ( ( Class<Object> ) type ), oldValue, value );
-      addInterfaces( value, type );
+      boolean addedInterface = addInterfaces( value, type );
+
+      added = added || addedInterface;
     }
+
+    return added;
   }
 
-  private void removeInterfaces( @NotNull Object value, @NotNull Class<?> superType ) {
+  private boolean removeInterfaces( @NotNull Object value, @NotNull Class<?> superType ) {
+    boolean removed = false;
+
     //Interfaces
     for ( Class<?> type : superType.getInterfaces() ) {
       Object oldValue = store.remove( type );
+
+      removed = removed || oldValue != null;
+
       lcs.fireLookupChanged( ( ( Class<Object> ) type ), oldValue, value );
-      addInterfaces( value, type );
+      boolean removedInterface = removeInterfaces( value, type );
+
+      removed = removed || removedInterface;
     }
+
+    return removed;
   }
 
-  public final void addValues( @NotNull Lookup lookup ) {
+  public final boolean addValues( @NotNull Lookup lookup ) {
+    boolean added = false;
     for ( Map.Entry<Class<?>, Object> entry : lookup.lookups().entrySet() ) {
-      addValue( entry.getValue() );
+      boolean addedThis = addValue( entry.getValue() );
+      added = added || addedThis;
     }
+    return added;
   }
 
-  public final void removeValues( @NotNull Lookup lookup ) {
+  public final boolean removeValues( @NotNull Lookup lookup ) {
+    boolean removed = false;
     for ( Map.Entry<Class<?>, Object> entry : lookup.lookups().entrySet() ) {
-      removeValue( entry.getValue() );
+      boolean removedThis = removeValue( entry.getValue() );
+      removed = removed || removedThis;
     }
+    return removed;
   }
 
   @Nullable

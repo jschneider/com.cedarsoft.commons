@@ -21,6 +21,38 @@ import java.util.RandomAccess;
  *         <a href="http://www.xore.de">Xore Systems</a>
  */
 public class DynamicLookupTest extends TestCase {
+  public void testRemove() {
+    DynamicLookup lookup = new DynamicLookup();
+    assertTrue( lookup.addValue( "asdf" ) );
+    assertFalse( lookup.addValue( "asdf" ) );
+
+    assertTrue( lookup.removeValue( "asdf" ) );
+    assertFalse( lookup.removeValue( "asdf" ) );
+  }
+
+  public void testRemove2() {
+    DynamicLookup lookup = new DynamicLookup();
+
+    assertTrue( lookup.addValue( 5 ) );
+    assertEquals( 5, lookup.lookups().size() );
+    assertTrue( lookup.addValue( 6 ) );
+
+    assertEquals( 5, lookup.lookups().size() );
+
+    assertTrue( lookup.removeValue( 1 ) );
+
+    assertEquals( 0, lookup.lookups().size() );
+  }
+
+  public void testRmove3() {
+    DynamicLookup lookup = new DynamicLookup();
+
+    assertTrue( lookup.addValue( 5 ) );
+    assertEquals( 5, lookup.lookups().size() );
+    assertTrue( lookup.removeValue( 1L ) );
+    assertEquals( 1, lookup.lookups().size() );
+    assertNotNull( lookup.lookup( Integer.class ) );
+  }
 
   public void testMultiple() {
     DynamicLookup lookup = Lookups.dynamicLookup( new AbstractAction( "myAction" ) {
@@ -64,13 +96,24 @@ public class DynamicLookupTest extends TestCase {
   }
 
   public void testInterfaces() {
-    DynamicLookup lookup = new DynamicLookup( new ArrayList() );
+    Object value = new ArrayList();
+    DynamicLookup lookup = new DynamicLookup( value );
 
     assertNotNull( lookup.lookup( ArrayList.class ) );
     assertNotNull( lookup.lookup( AbstractList.class ) );
     assertNotNull( lookup.lookup( List.class ) );
     assertNotNull( lookup.lookup( RandomAccess.class ) );
     assertNotNull( lookup.lookup( Object.class ) );
+
+    lookup.removeValue( value );
+
+    assertNull( lookup.lookup( ArrayList.class ) );
+    assertNull( lookup.lookup( AbstractList.class ) );
+    assertNull( lookup.lookup( List.class ) );
+    assertNull( lookup.lookup( RandomAccess.class ) );
+    assertNull( lookup.lookup( Object.class ) );
+
+    assertEquals( 0, lookup.lookups().size() );
   }
 }
 
