@@ -1,9 +1,12 @@
 package eu.cedarsoft.presenter;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import eu.cedarsoft.commons.struct.DefaultNode;
 import eu.cedarsoft.commons.struct.StructPart;
 import eu.cedarsoft.lookup.Lookup;
-import junit.framework.TestCase;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.ref.WeakReference;
@@ -11,8 +14,9 @@ import java.lang.ref.WeakReference;
 /**
  *
  */
-public class WeakTest extends TestCase {
+public class WeakTest  {
 
+  @Test
   public void testIt() throws InterruptedException {
     DefaultNode root = new DefaultNode( "root" );
     root.addChild( new DefaultNode( "child" ) );

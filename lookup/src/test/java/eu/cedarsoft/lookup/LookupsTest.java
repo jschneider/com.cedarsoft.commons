@@ -1,6 +1,9 @@
 package eu.cedarsoft.lookup;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -9,13 +12,12 @@ import java.util.List;
 /**
  * Tests all availabe types of lookups
  */
-public class LookupsTest extends TestCase {
+public class LookupsTest  {
   private static final String VALUE = "asdf";
   private List<Lookup> lookups;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     lookups = new ArrayList<Lookup>();
     lookups.add( new SingletonLookup<String>( String.class, VALUE ) );
     lookups.add( new DynamicLookup( VALUE ) );
@@ -45,6 +47,7 @@ public class LookupsTest extends TestCase {
     }
   }
 
+  @Test
   public void testResolve() {
     for ( Lookup lookup : lookups ) {
       assertFalse( lookup.lookups().isEmpty() );
@@ -53,6 +56,7 @@ public class LookupsTest extends TestCase {
     }
   }
 
+  @Test
   public void testBind() {
     for ( Lookup lookup : lookups ) {
       final String[] called = new String[1];
@@ -65,6 +69,7 @@ public class LookupsTest extends TestCase {
     }
   }
 
+  @Test
   public void testBind2() {
     for ( Lookup lookup : lookups ) {
       final String[] called = new String[1];
@@ -82,6 +87,7 @@ public class LookupsTest extends TestCase {
     }
   }
 
+  @Test
   public void testBindWeak() {
     for ( Lookup lookup : lookups ) {
       final String[] called = new String[1];
@@ -90,10 +96,11 @@ public class LookupsTest extends TestCase {
           called[0] = event.getNewValue();
         }
       } );
-      assertEquals( "Failed at " + lookup.getClass().getName(), VALUE, called[0] );
+      assertEquals( VALUE, called[0], "Failed at " + lookup.getClass().getName() );
     }
   }
 
+  @Test
   public void testBindWeak2() {
     for ( Lookup lookup : lookups ) {
       final String[] called = new String[1];
@@ -107,7 +114,7 @@ public class LookupsTest extends TestCase {
           return String.class;
         }
       } );
-      assertEquals( "Failed at " + lookup.getClass().getName(), VALUE, called[0] );
+      assertEquals( VALUE, called[0], "Failed at " + lookup.getClass().getName() );
     }
   }
 }

@@ -1,11 +1,15 @@
 package eu.cedarsoft.commons.struct;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 /**
  *
  */
-public class AddRemoveChildrenTest extends TestCase {
+public class AddRemoveChildrenTest  {
+  @Test
   public void testAdd() {
     Node parent = new DefaultNode( "parent" );
     assertEquals( 0, parent.getChildren().size() );

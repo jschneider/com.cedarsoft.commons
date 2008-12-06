@@ -5,8 +5,9 @@ import eu.cedarsoft.commons.struct.Node;
 import eu.cedarsoft.commons.struct.StructPart;
 import eu.cedarsoft.lookup.Lookup;
 import eu.cedarsoft.lookup.Lookups;
-import junit.framework.TestCase;
 import org.jetbrains.annotations.NotNull;
+import static org.testng.Assert.*;
+import org.testng.annotations.*;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -15,7 +16,8 @@ import java.awt.Component;
 /**
  *
  */
-public class SwingPresenterTest extends TestCase {
+public class SwingPresenterTest {
+  @Test
   public void testNormalAd() {
     Node root = new DefaultNode( "root" );
     root.addChild( new DefaultNode( "0", Lookups.dynamicLookup( new MySwingPresenter( true ) ) ) );
@@ -37,6 +39,7 @@ public class SwingPresenterTest extends TestCase {
     assertSame( child2, panel.getComponent( 3 ) );
   }
 
+  @Test
   public void testBaseic() {
     assertTrue( new MySwingPresenter( true ).createPresentation().isEnabled() );
     assertFalse( new MySwingPresenter( false ).createPresentation().isEnabled() );

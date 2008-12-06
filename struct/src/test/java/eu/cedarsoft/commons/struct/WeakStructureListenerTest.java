@@ -1,14 +1,18 @@
 package eu.cedarsoft.commons.struct;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NotNull;
 
 /**
  *
  */
-public class WeakStructureListenerTest extends TestCase {
+public class WeakStructureListenerTest  {
   private DefaultNode node;
 
+  @Test
   public void testAdd() {
     node.addStructureListener( new StructureListener() {
       public void childAdded( @NotNull StructureChangedEvent event ) {
@@ -22,6 +26,7 @@ public class WeakStructureListenerTest extends TestCase {
     assertEquals( 1, node.getChildrenSupport().getStructureListeners().size() );
   }
 
+  @Test
   public void testAddRemoveWeakListener() {
     StructureListener listener = new StructureListener() {
       public void childAdded( @NotNull StructureChangedEvent event ) {
@@ -39,6 +44,7 @@ public class WeakStructureListenerTest extends TestCase {
     assertEquals( 0, node.getChildrenSupport().getStructureListeners().size() );
   }
 
+  @Test
   public void testAutoRemoving() {
     assertEquals( 0, node.getChildrenSupport().getStructureListeners().size() );
     node.addStructureListenerWeak( new StructureListener() {
@@ -58,8 +64,8 @@ public class WeakStructureListenerTest extends TestCase {
     assertEquals( 0, node.getChildrenSupport().getStructureListeners().size() );
   }
 
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     node = new DefaultNode( "node" );
   }
 }

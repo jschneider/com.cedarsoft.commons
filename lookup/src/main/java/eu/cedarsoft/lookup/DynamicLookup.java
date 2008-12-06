@@ -132,6 +132,17 @@ public class DynamicLookup extends AbstractLookup implements LookupStore {
     return removed;
   }
 
+  public final boolean addValues( @NotNull Object... objects ) {
+    boolean added = false;
+
+    for ( Object object : objects ) {
+      boolean addedThis = addValue( object );
+      added = added || addedThis;
+    }
+
+    return added;
+  }
+
   public final boolean addValues( @NotNull Lookup lookup ) {
     boolean added = false;
     for ( Map.Entry<Class<?>, Object> entry : lookup.lookups().entrySet() ) {
@@ -145,6 +156,15 @@ public class DynamicLookup extends AbstractLookup implements LookupStore {
     boolean removed = false;
     for ( Map.Entry<Class<?>, Object> entry : lookup.lookups().entrySet() ) {
       boolean removedThis = removeValue( entry.getValue() );
+      removed = removed || removedThis;
+    }
+    return removed;
+  }
+
+  public final boolean removeValues( @NotNull Object... objects ) {
+    boolean removed = false;
+    for ( Object object : objects ) {
+      boolean removedThis = removeValue( object );
       removed = removed || removedThis;
     }
     return removed;

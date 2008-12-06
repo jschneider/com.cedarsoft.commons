@@ -1,19 +1,21 @@
 package eu.cedarsoft.commons.struct;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 /**
  *
  */
-public class RouteTest extends TestCase {
+public class RouteTest  {
   private DefaultNode root;
   private DefaultNode nodeA;
   private DefaultNode nodeB;
   private DefaultNode nodeC;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     root = new DefaultNode( "asdf" );
     nodeA = new DefaultNode( "a" );
     root.addChild( nodeA );
@@ -22,6 +24,7 @@ public class RouteTest extends TestCase {
     nodeC = new DefaultNode( "c" );
   }
 
+  @Test
   public void testInvalidRoot() {
     try {
       Route.buildRoute( new DefaultNode( "invalid" ), Path.createPath( "/asdf/a/b" ) );
@@ -30,6 +33,7 @@ public class RouteTest extends TestCase {
     }
   }
 
+  @Test
   public void testCreateChildPath() throws ChildNotFoundException {
     Route route = Route.buildRoute( root, Path.createPath( "/asdf/a/b" ) );
     assertNotNull( route );
@@ -42,6 +46,7 @@ public class RouteTest extends TestCase {
     assertEquals( "asdf/a/b", route.getPath().toString() );
   }
 
+  @Test
   public void testEquals() throws ChildNotFoundException {
     assertEquals( Route.buildRoute( root, Path.createPath( "/" ) ), Route.buildRoute( root, Path.createPath( "/" ) ) );
     assertEquals( Route.buildRoute( root, Path.createPath( "/asdf" ) ), Route.buildRoute( root, Path.createPath( "/asdf" ) ) );

@@ -1,21 +1,23 @@
 package eu.cedarsoft.commons.struct;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 /**
  * <p/>
  * Date: May 25, 2007<br>
  * Time: 4:10:09 PM<br>
  */
-public class LinkedNodeTest extends TestCase {
+public class LinkedNodeTest  {
   private Node childChild;
   private Node childChildchild;
   private Node node;
   private Node child;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     node = new DefaultNode( "asdf" );
     child = new DefaultNode( "child" );
     node.addChild( child );
@@ -27,11 +29,13 @@ public class LinkedNodeTest extends TestCase {
     childChild.addChild( childChildchild );
   }
 
+  @Test
   public void testSetup() {
     assertEquals( "asdf/child/childChild", childChild.getPath().toString() );
     assertEquals( "asdf/child/childChild/childChildChild", childChildchild.getPath().toString() );
   }
 
+  @Test
   public void testClean() {
     LinkedNode linkedNode = new LinkedNode( childChild );
     node.addChild( linkedNode );

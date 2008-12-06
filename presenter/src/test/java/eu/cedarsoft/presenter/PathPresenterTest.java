@@ -2,8 +2,8 @@ package eu.cedarsoft.presenter;
 
 import eu.cedarsoft.commons.struct.DefaultNode;
 import eu.cedarsoft.commons.struct.Node;
-import static org.junit.Assert.*;
-import org.junit.*;
+import org.testng.annotations.*;
+import static org.testng.Assert.assertEquals;
 
 /**
  * <p/>

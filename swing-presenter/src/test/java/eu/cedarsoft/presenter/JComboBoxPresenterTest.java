@@ -1,9 +1,12 @@
 package eu.cedarsoft.presenter;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import eu.cedarsoft.commons.struct.DefaultNode;
 import eu.cedarsoft.lookup.LookupStore;
 import eu.cedarsoft.lookup.Lookups;
-import junit.framework.TestCase;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,15 +23,14 @@ import java.lang.ref.WeakReference;
 /**
  *
  */
-public class JComboBoxPresenterTest extends TestCase {
+public class JComboBoxPresenterTest  {
   DefaultNode root;
   private Action rootAction;
   private JComboBoxPresenter presenter;
   private ListCellRenderer renderer;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     rootAction = new AbstractAction() {
       public void actionPerformed( ActionEvent e ) {
       }
@@ -43,6 +45,7 @@ public class JComboBoxPresenterTest extends TestCase {
     presenter = new JComboBoxPresenter();
   }
 
+  @Test
   public void testAction() {
     root = new DefaultNode( "root", Lookups.dynamicLookup() );
 
@@ -57,6 +60,7 @@ public class JComboBoxPresenterTest extends TestCase {
     assertSame( newAction, box.getAction() );
   }
 
+  @Test
   public void testRenderer() {
     root = new DefaultNode( "theRoot", Lookups.dynamicLookup() );
     JComboBox box = presenter.present( root );
@@ -82,6 +86,7 @@ public class JComboBoxPresenterTest extends TestCase {
     test.testWeak();
   }
 
+  @Test
   public void testWeak() throws InterruptedException {
     Thread.sleep( 500 );
     WeakReference<Object> reference = new WeakReference<Object>( new JComboBoxPresenter().present( root ) );
@@ -99,6 +104,7 @@ public class JComboBoxPresenterTest extends TestCase {
     assertNull( reference.get() );
   }
 
+  @Test
   public void testSelectionIndex() {
     JComboBox box = presenter.present( root );
     assertSame( rootAction, box.getAction() );
@@ -112,6 +118,7 @@ public class JComboBoxPresenterTest extends TestCase {
     assertEquals( root.getChildren().get( 2 ), box.getSelectedItem() );
   }
 
+  @Test
   public void testComboBoxPlain() {
     JComboBox box = new JComboBox();
     box.setAction( new AbstractAction( "the value" ) {

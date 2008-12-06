@@ -1,6 +1,9 @@
 package eu.cedarsoft.lookup;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -9,15 +12,15 @@ import java.util.List;
 /**
  *
  */
-public class WeakLookupChangeListenerTest extends TestCase {
+public class WeakLookupChangeListenerTest  {
   private MockLookup lookup;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     lookup = new MockLookup();
   }
 
+  @Test
   public void testWeakRemove() {
     LookupChangeListener<String> listener = new LookupChangeListener<String>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
@@ -30,6 +33,7 @@ public class WeakLookupChangeListenerTest extends TestCase {
     assertEquals( 0, lookup.getLookupChangeSupport().getListeners().size() );
   }
 
+  @Test
   public void testAdd() {
     LookupChangeListener<String> listener = new LookupChangeListener<String>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
@@ -40,6 +44,7 @@ public class WeakLookupChangeListenerTest extends TestCase {
     assertSame( listener, ( ( WeakLookupChangeListener<?> ) lookup.getLookupChangeSupport().getListeners().get( 0 ) ).getWrappedListener() );
   }
 
+  @Test
   public void testWeakDirect() {
     {
       lookup.addChangeListenerWeak( new LookupChangeListener<String>() {
@@ -55,6 +60,7 @@ public class WeakLookupChangeListenerTest extends TestCase {
     assertEquals( 0, lookup.getLookupChangeSupport().getListeners().size() );
   }
 
+  @Test
   public void testWeakListener() {
     lookup.addChangeListener( new WeakLookupChangeListener<String>( String.class, new LookupChangeListener<String>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
@@ -68,6 +74,7 @@ public class WeakLookupChangeListenerTest extends TestCase {
     assertEquals( 0, lookup.getLookupChangeSupport().getListeners().size() );
   }
 
+  @Test
   public void testWeakFactoryMethod() {
     lookup.addChangeListener( WeakLookupChangeListener.wrap( String.class, new LookupChangeListener<String>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
@@ -81,6 +88,7 @@ public class WeakLookupChangeListenerTest extends TestCase {
     assertEquals( 0, lookup.getLookupChangeSupport().getListeners().size() );
   }
 
+  @Test
   public void testWeakBind() {
     lookup.bindWeak( String.class, new LookupChangeListener<String>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
@@ -94,6 +102,7 @@ public class WeakLookupChangeListenerTest extends TestCase {
     assertEquals( 0, lookup.getLookupChangeSupport().getListeners().size() );
   }
 
+  @Test
   public void testWeakBindTyped() {
     lookup.bindWeak( new TypedLookupChangeListener<String>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
@@ -112,6 +121,7 @@ public class WeakLookupChangeListenerTest extends TestCase {
     assertEquals( 0, lookup.getLookupChangeSupport().getListeners().size() );
   }
 
+  @Test
   public void testWeakAdd() {
     lookup.addChangeListenerWeak( String.class, new LookupChangeListener<String>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
@@ -125,6 +135,7 @@ public class WeakLookupChangeListenerTest extends TestCase {
     assertEquals( 0, lookup.getLookupChangeSupport().getListeners().size() );
   }
 
+  @Test
   public void testWeakAdd2() {
     lookup.addLookupChangeListenerWeak( new LookupChangeListener<String>() {
       public void lookupChanged( @NotNull LookupChangeEvent<? extends String> event ) {
@@ -138,6 +149,7 @@ public class WeakLookupChangeListenerTest extends TestCase {
     assertEquals( 0, lookup.getLookupChangeSupport().getListeners().size() );
   }
 
+  @Test
   public void testWrap() {
     final List<LookupChangeEvent<?>> events = new ArrayList<LookupChangeEvent<?>>();
 

@@ -1,8 +1,11 @@
 package eu.cedarsoft.presenter;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import eu.cedarsoft.commons.struct.DefaultNode;
 import eu.cedarsoft.lookup.Lookups;
-import junit.framework.TestCase;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractAction;
@@ -23,12 +26,11 @@ import java.util.Set;
 /**
  *
  */
-public class PopupMenuPresenterTest extends TestCase {
+public class PopupMenuPresenterTest  {
   DefaultNode root;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     root = new DefaultNode( "root", Lookups.singletonLookup( Action.class, createAction( 99 ) ) );
     root.addChild( new DefaultNode( "1", Lookups.singletonLookup( Action.class, createAction( 0 ) ) ) );
     root.addChild( new DefaultNode( "2", Lookups.singletonLookup( Action.class, createAction( 1 ) ) ) );
@@ -44,6 +46,7 @@ public class PopupMenuPresenterTest extends TestCase {
     };
   }
 
+  @Test
   public void testWeak() {
     WeakReference<Object> reference = new WeakReference<Object>( new DefaultJPopupMenuPresenter().present( root ) );
     assertNotNull( reference.get() );
@@ -53,6 +56,7 @@ public class PopupMenuPresenterTest extends TestCase {
     assertNull( reference.get() );
   }
 
+  @Test
   public void testTexts() {
     JPopupMenu popupMenu = new DefaultJPopupMenuPresenter().present( root );
 
@@ -66,11 +70,13 @@ public class PopupMenuPresenterTest extends TestCase {
     }
   }
 
+  @Test
   public void testIt() {
     JPopupMenu popupMenu = new DefaultJPopupMenuPresenter().present( root );
     assertEquals( 4, popupMenu.getSubElements().length );
   }
 
+  @Test
   public void testDynamic() {
     JPopupMenu popupMenu = new DefaultJPopupMenuPresenter().present( root );
     assertEquals( 4, popupMenu.getSubElements().length );

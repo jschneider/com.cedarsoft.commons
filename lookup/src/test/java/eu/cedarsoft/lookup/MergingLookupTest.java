@@ -1,6 +1,9 @@
 package eu.cedarsoft.lookup;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -9,14 +12,13 @@ import java.util.List;
 /**
  *
  */
-public class MergingLookupTest extends TestCase {
+public class MergingLookupTest  {
   private MappedLookup lookup0;
   private MappedLookup lookup1;
   private MergingLookup mergingLookup;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     lookup0 = new MappedLookup();
     lookup0.store( String.class, "0" );
     lookup0.store( Integer.class, 1 );
@@ -28,6 +30,7 @@ public class MergingLookupTest extends TestCase {
     mergingLookup = new MergingLookup( lookup0, lookup1 );
   }
 
+  @Test
   public void testMerging() {
     assertEquals( "0", mergingLookup.lookup( String.class ) );
     assertEquals( "1", mergingLookup.lookup( CharSequence.class ) );
@@ -40,6 +43,7 @@ public class MergingLookupTest extends TestCase {
     assertEquals( new Integer( 1 ), mergingLookup.lookups().get( Integer.class ) );
   }
 
+  @Test
   public void testListener() {
     final List<String> newValues = new ArrayList<String>();
 

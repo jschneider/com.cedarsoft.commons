@@ -1,8 +1,11 @@
 package eu.cedarsoft.presenter;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import eu.cedarsoft.commons.struct.DefaultNode;
 import eu.cedarsoft.commons.struct.Node;
-import junit.framework.TestCase;
+import static org.testng.Assert.*;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -17,15 +20,14 @@ import java.lang.ref.WeakReference;
  * Date: May 25, 2007<br>
  * Time: 3:27:15 PM<br>
  */
-public class ButtonPresenterTest extends TestCase {
+public class ButtonPresenterTest  {
   private JButtonPresenter buttonPresenter;
   private Node node;
   private AbstractAction action;
   private MockLookup lookup;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     buttonPresenter = new JButtonPresenter();
     lookup = new MockLookup();
     action = new AbstractAction( "The Action" ) {
@@ -38,6 +40,7 @@ public class ButtonPresenterTest extends TestCase {
     node = new DefaultNode( "theButtonNode", lookup );
   }
 
+  @Test
   public void testWeak2() {
     WeakReference<Object> reference = new WeakReference<Object>( buttonPresenter.present( node ) );
     assertNotNull( reference.get() );
@@ -47,6 +50,7 @@ public class ButtonPresenterTest extends TestCase {
     assertNull( reference.get() );
   }
 
+  @Test
   public void testWeakCHeckbox() {
     WeakReference<Object> reference = new WeakReference<Object>( new JCheckboxPresenter().present( node ) );
     assertNotNull( reference.get() );
@@ -56,6 +60,7 @@ public class ButtonPresenterTest extends TestCase {
     assertNull( reference.get() );
   }
 
+  @Test
   public void testWeak() {
     buttonPresenter = new JButtonPresenter();
     WeakReference<JButton> reference = new WeakReference<JButton>( buttonPresenter.present( node ) );
@@ -75,6 +80,7 @@ public class ButtonPresenterTest extends TestCase {
     assertNull( reference.get() );
   }
 
+  @Test
   public void testIt() {
     JCheckBox checkBox = new JCheckBox();
     AbstractAction daAction = new AbstractAction( "asf" ) {
@@ -93,6 +99,7 @@ public class ButtonPresenterTest extends TestCase {
     assertFalse( ( Boolean ) daAction.getValue( Action.SELECTED_KEY ) );
   }
 
+  @Test
   public void testCheckBox() {
     JCheckboxPresenter presenter = new JCheckboxPresenter();
     JCheckBox checkBox = presenter.present( node );
@@ -113,6 +120,7 @@ public class ButtonPresenterTest extends TestCase {
     assertEquals( "The Action", checkBox.getText() );
   }
 
+  @Test
   public void testNoAction() {
     try {
       buttonPresenter.present( new DefaultNode( "a" ) );
@@ -121,6 +129,7 @@ public class ButtonPresenterTest extends TestCase {
     }
   }
 
+  @Test
   public void testCreateButton() {
     JButton button = buttonPresenter.present( node );
     assertNotNull( button );

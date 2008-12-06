@@ -1,6 +1,9 @@
 package eu.cedarsoft.lookup;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -8,17 +11,17 @@ import java.util.Collections;
 /**
  *
  */
-public class LookupChangeSupportTest extends TestCase {
+public class LookupChangeSupportTest  {
   private LookupChangeSupport lookupChangeSupport;
   private MockLookup lookup;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     lookup = new MockLookup();
     lookupChangeSupport = lookup.getLookupChangeSupport();
   }
 
+  @Test
   public void testListenersSameDontFire() {
     LookupChangeListenerMock listener = new LookupChangeListenerMock();
     lookupChangeSupport.addChangeListener( listener );
@@ -36,6 +39,7 @@ public class LookupChangeSupportTest extends TestCase {
     listener.verify();
   }
 
+  @Test
   public void testListener() {
     assertEquals( 0, lookupChangeSupport.getListeners().size() );
     LookupChangeListenerMock listener = new LookupChangeListenerMock();
@@ -45,6 +49,7 @@ public class LookupChangeSupportTest extends TestCase {
     assertEquals( 0, lookupChangeSupport.getListeners().size() );
   }
 
+  @Test
   public void testAddWeak() {
     addWeakListener();
     assertEquals( 2, lookupChangeSupport.getListeners().size() );
@@ -69,6 +74,7 @@ public class LookupChangeSupportTest extends TestCase {
     } );
   }
 
+  @Test
   public void testAddListeners() {
     assertEquals( 0, lookupChangeSupport.getListeners().size() );
     lookupChangeSupport.addChangeListener( String.class, new LookupChangeListener<Object>() {

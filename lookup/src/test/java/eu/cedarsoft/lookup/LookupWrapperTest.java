@@ -1,6 +1,9 @@
 package eu.cedarsoft.lookup;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 /**
  * <p/>
@@ -10,16 +13,16 @@ import junit.framework.TestCase;
  * @author <a href="http://johannes-schneider.info">Johannes Schneider</a> -
  *         <a href="http://www.xore.de">Xore Systems</a>
  */
-public class LookupWrapperTest extends TestCase {
+public class LookupWrapperTest  {
   private MappedLookup lookup;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     lookup = new MappedLookup();
     lookup.store( String.class, "asdf" );
   }
 
+  @Test
   public void testWrapping() {
     LookupChangeListenerMock listenerMock = new LookupChangeListenerMock();
 

@@ -1,12 +1,15 @@
 package eu.cedarsoft.presenter.model;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import eu.cedarsoft.commons.struct.DefaultNode;
 import eu.cedarsoft.commons.struct.Node;
 import eu.cedarsoft.commons.struct.StructPart;
 import eu.cedarsoft.lookup.DynamicLookup;
 import eu.cedarsoft.lookup.LookupStore;
 import eu.cedarsoft.lookup.Lookups;
-import junit.framework.TestCase;
+import static org.testng.Assert.*;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComboBox;
@@ -24,7 +27,7 @@ import java.util.List;
 /**
  *
  */
-public class ListModelTest extends TestCase {
+public class ListModelTest  {
   public static void main( String[] args ) throws Exception {
     ListModelTest test = new ListModelTest();
     test.setUp();
@@ -63,9 +66,8 @@ public class ListModelTest extends TestCase {
 
   private DefaultNode root;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     root = new DefaultNode( "root" );
     root.addChild( new DefaultNode( "0", Lookups.dynamicLookup() ) );
     root.addChild( new DefaultNode( "1", Lookups.dynamicLookup() ) );
@@ -76,12 +78,12 @@ public class ListModelTest extends TestCase {
     model = new StructBasedListModel( root );
   }
 
+  @Test
   public void testWeak() {
     new StructBasedListModel( root );
-
   }
 
-
+  @Test
   public void testStatic() {
     assertEquals( 5, model.getSize() );
     assertEquals( "0", model.getElementAt( 0 ).getName() );
@@ -91,6 +93,7 @@ public class ListModelTest extends TestCase {
     assertEquals( "4", model.getElementAt( 4 ).getName() );
   }
 
+  @Test
   public void testListenersRegisterUnregister() {
     for ( Node child : root.getChildren() ) {
       assertEquals( 1, ( ( DynamicLookup ) child.getLookup() ).getLookupChangeListeners().size() );
@@ -102,6 +105,7 @@ public class ListModelTest extends TestCase {
     assertEquals( 0, ( ( DynamicLookup ) child.getLookup() ).getLookupChangeListeners().size() );
   }
 
+  @Test
   public void testListenersChange() {
     final List<ListDataEvent> events = new ArrayList<ListDataEvent>();
 
@@ -132,6 +136,7 @@ public class ListModelTest extends TestCase {
     assertEquals( 1, event.getIndex1() );
   }
 
+  @Test
   public void testDynamic() {
     final List<ListDataEvent> events = new ArrayList<ListDataEvent>();
 

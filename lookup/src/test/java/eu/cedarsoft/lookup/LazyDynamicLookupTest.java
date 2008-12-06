@@ -1,6 +1,9 @@
 package eu.cedarsoft.lookup;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
@@ -9,14 +12,14 @@ import java.util.Map;
 /**
  *
  */
-public class LazyDynamicLookupTest extends TestCase {
+public class LazyDynamicLookupTest  {
   private LazyLookup<String> lookup;
 
   private boolean called;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
+    called = false;
     lookup = new LazyLookup<String>() {
       @Override
       public Class<? extends String> getType() {
@@ -35,6 +38,7 @@ public class LazyDynamicLookupTest extends TestCase {
     };
   }
 
+  @Test
   public void testLazy() {
     assertFalse( called );
     Map<Class<?>, Object> lookups = lookup.lookups();
@@ -50,6 +54,7 @@ public class LazyDynamicLookupTest extends TestCase {
     assertEquals( "asdf", lookup.lookup( String.class ) );
   }
 
+  @Test
   public void testFail() {
     Map.Entry<Class<?>, Object> entry = lookup.lookups().entrySet().iterator().next();
     assertFalse( called );

@@ -1,8 +1,8 @@
 package eu.cedarsoft.lookup;
 
-import junit.framework.Assert;
 import org.jetbrains.annotations.NotNull;
-import org.junit.*;
+import org.testng.annotations.*;
+import static org.testng.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +32,9 @@ public class LookupChangeListenerMock implements LookupChangeListener<Object> {
     }
     Entry<?> firstEntry = entries.remove( 0 );
 
-    Assert.assertEquals( firstEntry.type, event.getType() );
-    Assert.assertEquals( firstEntry.oldValue, event.getOldValue() );
-    Assert.assertEquals( firstEntry.newValue, event.getNewValue() );
+    assertEquals( firstEntry.type, event.getType() );
+    assertEquals( firstEntry.oldValue, event.getOldValue() );
+    assertEquals( firstEntry.newValue, event.getNewValue() );
   }
 
   @Test

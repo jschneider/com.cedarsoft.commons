@@ -1,6 +1,9 @@
 package eu.cedarsoft.commons.struct;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -10,12 +13,11 @@ import java.util.List;
 /**
  *
  */
-public class StructTreeWalkerTest extends TestCase {
+public class StructTreeWalkerTest  {
   private Node root;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     root = new DefaultNode( "0" );
     root.addChild( new DefaultNode( "00" ) );
     DefaultNode child = new DefaultNode( "01" );
@@ -27,6 +29,7 @@ public class StructTreeWalkerTest extends TestCase {
     root.addChild( new DefaultNode( "02" ) );
   }
 
+  @Test
   public void testDeepFirst() {
     final List<String> expected = new ArrayList<String>( Arrays.asList( "0", "00", "01", "010", "011", "012", "013", "02" ) );
 
@@ -40,6 +43,7 @@ public class StructTreeWalkerTest extends TestCase {
     assertTrue( expected.isEmpty() );
   }
 
+  @Test
   public void testBreadthFirst() {
     final List<String> expected = new ArrayList<String>( Arrays.asList( "0", "00", "01", "02", "010", "011", "012", "013" ) );
 

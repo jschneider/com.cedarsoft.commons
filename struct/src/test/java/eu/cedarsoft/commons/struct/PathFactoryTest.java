@@ -1,6 +1,9 @@
 package eu.cedarsoft.commons.struct;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -10,15 +13,15 @@ import java.util.Queue;
 /**
  *
  */
-public class PathFactoryTest extends TestCase {
+public class PathFactoryTest  {
   private PathFactory pathFactory;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     pathFactory = new PathFactory();
   }
 
+  @Test
   public void testLevel() {
     DefaultNode root = new DefaultNode( "root" );
     DefaultNode child = new DefaultNode( "child" );
@@ -44,11 +47,13 @@ public class PathFactoryTest extends TestCase {
     }
   }
 
+  @Test
   public void testAbsolute() {
     assertTrue( pathFactory.createPath( "/a" ).isAbsolute() );
     assertFalse( pathFactory.createPath( "a" ).isAbsolute() );
   }
 
+  @Test
   public void testEmpty() {
     try {
       pathFactory.createPath( "a//" );
@@ -57,6 +62,7 @@ public class PathFactoryTest extends TestCase {
     }
   }
 
+  @Test
   public void testValidator() {
     Node root = new DefaultNode( "0" );
     Node child = new DefaultNode( "1" );

@@ -1,8 +1,11 @@
 package eu.cedarsoft.commons.struct;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import eu.cedarsoft.lookup.Lookups;
 import eu.cedarsoft.lookup.MappedLookup;
-import junit.framework.TestCase;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -16,7 +19,8 @@ import java.util.List;
  * Time: 10:49:21 AM<br>
  */
 
-public class ChildrenListenerTest extends TestCase {
+public class ChildrenListenerTest  {
+  @Test
   public void testDetach() {
     DefaultChildrenSupport support = new DefaultChildrenSupport();
     Node parent = new DefaultNode( "parent", support, new MappedLookup() );
@@ -47,6 +51,7 @@ public class ChildrenListenerTest extends TestCase {
     assertEquals( StructureChangedEvent.Type.Remove, event.getType() );
   }
 
+  @Test
   public void testSetChildren() {
     DefaultChildrenSupport support = new DefaultChildrenSupport();
     Node parent = new DefaultNode( "parent", support, new MappedLookup() );
@@ -82,6 +87,7 @@ public class ChildrenListenerTest extends TestCase {
     assertEquals( 2, support.getChildren().size() );
   }
 
+  @Test
   public void testDetachAll() {
     DefaultChildrenSupport support = new DefaultChildrenSupport();
     DefaultNode parent = new DefaultNode( "parent", support, Lookups.emtyLookup() );
@@ -119,6 +125,7 @@ public class ChildrenListenerTest extends TestCase {
 
   }
 
+  @Test
   public void testAddChild() {
     Node parent = new DefaultNode( "parent" );
     final List<StructureChangedEvent> events = new ArrayList<StructureChangedEvent>();
@@ -146,6 +153,7 @@ public class ChildrenListenerTest extends TestCase {
     assertEquals( 0, events.get( 1 ).getIndex() );
   }
 
+  @Test
   public void testAddChildSupport() {
     DefaultChildrenSupport support = new DefaultChildrenSupport();
     Node parent = new DefaultNode( "parent", support, new MappedLookup() );

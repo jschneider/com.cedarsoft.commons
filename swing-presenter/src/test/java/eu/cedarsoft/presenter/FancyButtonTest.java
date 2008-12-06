@@ -2,7 +2,7 @@ package eu.cedarsoft.presenter;
 
 import eu.cedarsoft.commons.struct.DefaultNode;
 import eu.cedarsoft.lookup.Lookups;
-import org.junit.*;
+import org.testng.annotations.*;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;

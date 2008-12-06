@@ -1,8 +1,11 @@
 package eu.cedarsoft.commons.struct;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import eu.cedarsoft.lookup.MappedLookup;
-import junit.framework.TestCase;
-import org.junit.*;
+import static org.testng.Assert.*;
+import org.testng.annotations.*;
 
 import java.util.List;
 
@@ -14,7 +17,8 @@ import java.util.List;
  * @author <a href="http://johannes-schneider.info">Johannes Schneider</a> -
  *         <a href="http://www.xore.de">Xore Systems</a>
  */
-public class NodesTest extends TestCase {
+public class NodesTest  {
+  @Test
   public void testIndex() {
     Node node = new DefaultNode( "parent" );
     node.addChild( new DefaultNode( "0" ) );
@@ -38,6 +42,7 @@ public class NodesTest extends TestCase {
     assertEquals( "3", node.getChildren().get( 4 ).getName() );
   }
 
+  @Test
   public void testDetach() {
     Node node = new DefaultNode( "parent" );
     node.addChild( new DefaultNode( "0" ) );

@@ -3,8 +3,9 @@ package eu.cedarsoft.presenter;
 import eu.cedarsoft.commons.struct.DefaultNode;
 import eu.cedarsoft.commons.struct.Node;
 import eu.cedarsoft.lookup.MappedLookup;
-import static org.junit.Assert.*;
-import org.junit.*;
+import static org.testng.Assert.*;
+
+import org.testng.annotations.*;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;

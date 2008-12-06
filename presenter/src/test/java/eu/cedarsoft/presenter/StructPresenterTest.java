@@ -1,18 +1,20 @@
 package eu.cedarsoft.presenter;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import eu.cedarsoft.commons.struct.DefaultNode;
 import eu.cedarsoft.commons.struct.Node;
-import junit.framework.TestCase;
+import static org.testng.Assert.*;
 
 /**
  *
  */
-public class StructPresenterTest extends TestCase {
+public class StructPresenterTest  {
   private Node root;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     root = new DefaultNode( "0" );
     root.addChild( new DefaultNode( "00" ) );
     DefaultNode child = new DefaultNode( "01" );
@@ -24,6 +26,7 @@ public class StructPresenterTest extends TestCase {
     root.addChild( new DefaultNode( "02" ) );
   }
 
+  @Test
   public void testIt() {
     StructStringPresenter stringPresenter = new StructStringPresenter( "\t" );
     assertEquals(
@@ -37,6 +40,7 @@ public class StructPresenterTest extends TestCase {
             "\t02\n", stringPresenter.present( root ) );
   }
 
+  @Test
   public void testItSpecialSequence() {
     StructStringPresenter stringPresenter = new StructStringPresenter( "-->" );
     assertEquals(

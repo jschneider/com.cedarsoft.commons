@@ -1,6 +1,9 @@
 package eu.cedarsoft.lookup;
 
-import junit.framework.TestCase;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +17,12 @@ import java.util.Map;
  * @author <a href="http://johannes-schneider.info">Johannes Schneider</a> -
  *         <a href="http://www.xore.de">Xore Systems</a>
  */
-public class LookupTest extends TestCase {
-  @Override
+public class LookupTest  {
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
   }
 
+  @Test
   public void testSimpleLookup() {
     Lookup lookup = Lookups.createLookup( "a", 5 );
     assertEquals( 2, lookup.lookups().size() );
@@ -27,6 +30,7 @@ public class LookupTest extends TestCase {
     assertTrue( lookup.lookups().keySet().contains( Integer.class ) );
   }
 
+  @Test
   public void testLookup() {
     checkLookupStore( new MappedLookup() );
   }
@@ -37,6 +41,7 @@ public class LookupTest extends TestCase {
     assertEquals( "asdf", lookup.lookup( String.class ) );
   }
 
+  @Test
   public void testLookups() {
     MappedLookup lookup = new MappedLookup();
     assertTrue( lookup.lookups().isEmpty() );
@@ -48,6 +53,7 @@ public class LookupTest extends TestCase {
     assertEquals( "asdf", entry.getValue() );
   }
 
+  @Test
   public void testLookupsFromList() {
     List<Object> objects = new ArrayList<Object>();
     assertEquals( 0, Lookups.dynamicLookupFromList( objects ).lookups().size() );

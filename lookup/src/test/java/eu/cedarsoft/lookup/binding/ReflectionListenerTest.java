@@ -1,8 +1,11 @@
 package eu.cedarsoft.lookup.binding;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import eu.cedarsoft.lookup.LookupChangeEvent;
 import eu.cedarsoft.lookup.Lookups;
-import junit.framework.TestCase;
+import static org.testng.Assert.*;
 
 import java.lang.reflect.Method;
 
@@ -11,7 +14,8 @@ import java.lang.reflect.Method;
  * Date: Jun 1, 2007<br>
  * Time: 1:30:20 PM<br>
  */
-public class ReflectionListenerTest extends TestCase {
+public class ReflectionListenerTest  {
+  @Test
   public void testPropertyCallback() {
     MyObject object = new MyObject();
 
@@ -20,6 +24,7 @@ public class ReflectionListenerTest extends TestCase {
     assertEquals( "newValue", object.getName() );
   }
 
+  @Test
   public void testIt() throws NoSuchMethodException {
     MyObject object = new MyObject();
     Method method = object.getClass().getMethod( "setName", String.class );

@@ -1,23 +1,26 @@
 package eu.cedarsoft.commons.repository;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import eu.cedarsoft.commons.struct.ChildNotFoundException;
 import eu.cedarsoft.commons.struct.DefaultNode;
 import eu.cedarsoft.commons.struct.Node;
 import eu.cedarsoft.commons.struct.Path;
 import eu.cedarsoft.commons.struct.PathFactory;
-import junit.framework.TestCase;
+import static org.testng.Assert.*;
 
 /**
  */
-public class RepositoryTest extends TestCase {
+public class RepositoryTest  {
   private Repository repository;
 
-  @Override
+  @BeforeMethod
   protected void setUp() throws Exception {
-    super.setUp();
     repository = new Repository();
   }
 
+  @Test
   public void testPathNodeAbsolute() {
     Node parent = new DefaultNode( "a" );
     Node child0 = new DefaultNode( "child0" );
@@ -27,17 +30,20 @@ public class RepositoryTest extends TestCase {
     assertEquals( "/a/child0", repository.getPath( child0 ).toString() );
   }
 
+  @Test
   public void testGetRepository() {
     assertTrue( repository.isRoot( repository.getRootNode() ) );
     assertFalse( repository.getRootNode().hasParent() );
   }
 
+  @Test
   public void testRoot() {
     Node root = repository.getRootNode();
     assertTrue( repository.isRoot( root ) );
     assertFalse( repository.isRoot( new DefaultNode( "asdf" ) ) );
   }
 
+  @Test
   public void testRootNode() {
     Node root = repository.getRootNode();
     assertSame( root, repository.getNode( new PathFactory().createPath( "/" ) ) );
@@ -47,6 +53,7 @@ public class RepositoryTest extends TestCase {
     assertEquals( "/", repository.getPath( root ).toString() );
   }
 
+  @Test
   public void testAbsolute() {
     Node root = repository.getRootNode();
     assertTrue( repository.getPath( root ).isAbsolute() );
@@ -56,12 +63,14 @@ public class RepositoryTest extends TestCase {
     assertTrue( repository.getPath( child ).isAbsolute() );
   }
 
+  @Test
   public void testAddChildrenRoot() {
     DefaultNode child = new DefaultNode( "daChild" );
     repository.getRootNode().addChild( child );
     assertEquals( "/daChild", repository.getPath( child ).toString() );
   }
 
+  @Test
   public void testFindNode() throws ChildNotFoundException {
     repository.getRootNode().addChild( new DefaultNode( "asdf" ) );
     Node node = repository.findNode( new PathFactory().createPath( "/asdf" ) );
@@ -69,6 +78,7 @@ public class RepositoryTest extends TestCase {
     assertEquals( "asdf", node.getName() );
   }
 
+  @Test
   public void testSilentCreation() {
     Path path = new PathFactory().createPath( "/home/schneide" );
     try {

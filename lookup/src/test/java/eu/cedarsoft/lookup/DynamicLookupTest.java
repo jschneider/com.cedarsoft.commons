@@ -1,6 +1,7 @@
 package eu.cedarsoft.lookup;
 
-import junit.framework.TestCase;
+import static org.testng.Assert.*;
+import org.testng.annotations.*;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -20,7 +21,8 @@ import java.util.RandomAccess;
  * @author <a href="http://johannes-schneider.info">Johannes Schneider</a> -
  *         <a href="http://www.xore.de">Xore Systems</a>
  */
-public class DynamicLookupTest extends TestCase {
+public class DynamicLookupTest {
+  @Test
   public void testRemove() {
     DynamicLookup lookup = new DynamicLookup();
     assertTrue( lookup.addValue( "asdf" ) );
@@ -30,6 +32,7 @@ public class DynamicLookupTest extends TestCase {
     assertFalse( lookup.removeValue( "asdf" ) );
   }
 
+  @Test
   public void testRemove2() {
     DynamicLookup lookup = new DynamicLookup();
 
@@ -44,6 +47,7 @@ public class DynamicLookupTest extends TestCase {
     assertEquals( 0, lookup.lookups().size() );
   }
 
+  @Test
   public void testRmove3() {
     DynamicLookup lookup = new DynamicLookup();
 
@@ -54,6 +58,7 @@ public class DynamicLookupTest extends TestCase {
     assertNotNull( lookup.lookup( Integer.class ) );
   }
 
+  @Test
   public void testMultiple() {
     DynamicLookup lookup = Lookups.dynamicLookup( new AbstractAction( "myAction" ) {
       public void actionPerformed( ActionEvent e ) {
@@ -66,6 +71,7 @@ public class DynamicLookupTest extends TestCase {
     assertNotNull( lookup.lookup( AbstractAction.class ) );
   }
 
+  @Test
   public void testListeners() {
     DynamicLookup lookup = new DynamicLookup( "asdf" );
     LookupChangeListenerMock mock = new LookupChangeListenerMock();
@@ -81,6 +87,7 @@ public class DynamicLookupTest extends TestCase {
     mock.verify();
   }
 
+  @Test
   public void testIt() {
     DynamicLookup lookup = new DynamicLookup( "asdf" );
     assertFalse( lookup.lookups().isEmpty() );
@@ -95,6 +102,7 @@ public class DynamicLookupTest extends TestCase {
     assertEquals( 5, map.size() );
   }
 
+  @Test
   public void testInterfaces() {
     Object value = new ArrayList();
     DynamicLookup lookup = new DynamicLookup( value );

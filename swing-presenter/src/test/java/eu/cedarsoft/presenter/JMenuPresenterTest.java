@@ -1,10 +1,13 @@
 package eu.cedarsoft.presenter;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import eu.cedarsoft.commons.struct.DefaultNode;
 import eu.cedarsoft.commons.struct.Node;
 import eu.cedarsoft.commons.struct.StructPart;
 import eu.cedarsoft.lookup.Lookups;
-import junit.framework.TestCase;
+import static org.testng.Assert.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,7 +28,7 @@ import java.util.Map;
 
 /**
  */
-public class JMenuPresenterTest extends TestCase {
+public class JMenuPresenterTest  {
   @Nullable
   private static Action getAction( int index ) {
     return actions.get( index );
@@ -57,6 +60,7 @@ public class JMenuPresenterTest extends TestCase {
 
   private static final Map<Integer, Action> actions = new HashMap<Integer, Action>();
 
+  @Test
   public void testWeak2() {
     WeakReference<Object> reference = new WeakReference<Object>( new JMenuBarPresenter().present( buildStructure() ) );
     assertNotNull( reference.get() );
@@ -66,6 +70,7 @@ public class JMenuPresenterTest extends TestCase {
     assertNull( reference.get() );
   }
 
+  @Test
   public void testSeparator() {
     Node root = new DefaultNode( "0", Lookups.singletonLookup( Action.class, createAction( 99 ) ) );
     root.addChild( new DefaultNode( "1", Lookups.singletonLookup( Action.class, createAction( 0 ) ) ) );
@@ -84,6 +89,7 @@ public class JMenuPresenterTest extends TestCase {
     assertEquals( JSeparator.class, separatorItem.getClass() );
   }
 
+  @Test
   public void testComponents() {
     Node root = new DefaultNode( "0", Lookups.singletonLookup( Action.class, createAction( 99 ) ) );
     root.addChild( new DefaultNode( "0", Lookups.dynamicLookup( new JButton( "asdf" ) ) ) );
@@ -95,6 +101,7 @@ public class JMenuPresenterTest extends TestCase {
     assertEquals( JCheckBox.class, menu.getMenuComponent( 1 ).getClass() );
   }
 
+  @Test
   public void testSubMenu() {
     Node root = new DefaultNode( "0", Lookups.singletonLookup( Action.class, createAction( 99 ) ) );
     root.addChild( new DefaultNode( "0", Lookups.singletonLookup( Action.class, createAction( 0 ) ) ) );
@@ -107,6 +114,7 @@ public class JMenuPresenterTest extends TestCase {
     assertEquals( JMenu.class, menu.getMenuComponent( 2 ).getClass() );
   }
 
+  @Test
   public void testIt() {
     JMenuPresenter presenter = new DefaultJMenuPresenter();
     StructPart struct = buildStructure();
@@ -131,6 +139,7 @@ public class JMenuPresenterTest extends TestCase {
     assertSame( getAction( actionIndex ), ( ( AbstractButton ) component ).getAction() );
   }
 
+  @Test
   public void testMenUBar() {
     JMenuBarPresenter presenter = new JMenuBarPresenter();
 
