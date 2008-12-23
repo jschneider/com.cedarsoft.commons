@@ -12,7 +12,7 @@
     <dependency>
       <groupId>com.cedarsoft.commons</groupId>
       <artifactId>swing-presenter</artifactId>
-      <version>1.0</version>
+      <version>1.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.thoughtworks.xstream</groupId>
@@ -23,15 +23,8 @@
     <dependency>
       <groupId>com.intellij</groupId>
       <artifactId>annotations</artifactId>
-      <version>6.0.3</version>
+      <version>7.0.3</version>
       <scope>compile</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.3.1</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 
