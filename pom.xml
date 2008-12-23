@@ -13,17 +13,11 @@
   <packaging>pom</packaging>
   <version>1.1-SNAPSHOT</version>
   <name>cedarsoft Commons</name>
-  <url>http://www.cedarsoft.de</url>
 
   <scm>
-    <connection>scm:svn:https://svn.cedarsoft.eu/open/com.cedarsoft.commons/trunk/</connection>
-    <developerConnection>scm:svn:https://svn.cedarsoft.eu/open/com.cedarsoft.commons/trunk/</developerConnection>
+    <connection>scm:git:git://git.cedarsoft.com/com.cedarsoft.commons</connection>
+    <developerConnection>scm:git:ssh://git.cedarsoft.com/home/git/com.cedarsoft.commons</developerConnection>
   </scm>
-
-  <organization>
-    <name>cedarsoft</name>
-    <url>http://cedarsoft.eu</url>
-  </organization>
 
   <dependencyManagement>
     <dependencies>
