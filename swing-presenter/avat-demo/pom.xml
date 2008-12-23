@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>eu.cedarsoft.commons.swing-presenter</groupId>
+  <groupId>com.cedarsoft.commons.swing-presenter</groupId>
   <artifactId>avat-demo</artifactId>
   <name>Swing Presenter Avat Demo</name>
   <version>1.0-SAPSHOT</version>
 
   <dependencies>
     <dependency>
-      <groupId>eu.cedarsoft.commons</groupId>
+      <groupId>com.cedarsoft.commons</groupId>
       <artifactId>swing-presenter</artifactId>
       <version>1.0</version>
     </dependency>

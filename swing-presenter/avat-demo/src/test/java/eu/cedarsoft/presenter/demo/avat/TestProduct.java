@@ -1,4 +1,4 @@
-package eu.cedarsoft.presenter.demo.avat;
+package com.cedarsoft.presenter.demo.avat;
 
 import static org.testng.Assert.*;
 

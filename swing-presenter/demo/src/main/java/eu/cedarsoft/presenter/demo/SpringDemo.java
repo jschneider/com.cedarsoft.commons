@@ -1,7 +1,7 @@
-package eu.cedarsoft.presenter.demo;
+package com.cedarsoft.presenter.demo;
 
-import eu.cedarsoft.commons.struct.Node;
-import eu.cedarsoft.presenter.JMenuBarPresenter;
+import com.cedarsoft.commons.struct.Node;
+import com.cedarsoft.presenter.JMenuBarPresenter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

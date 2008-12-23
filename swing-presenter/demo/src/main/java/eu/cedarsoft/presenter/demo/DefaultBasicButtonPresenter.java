@@ -1,6 +1,6 @@
-package eu.cedarsoft.presenter.demo;
+package com.cedarsoft.presenter.demo;
 
-import eu.cedarsoft.presenter.AbstractButtonPresenter;
+import com.cedarsoft.presenter.AbstractButtonPresenter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.JButton;

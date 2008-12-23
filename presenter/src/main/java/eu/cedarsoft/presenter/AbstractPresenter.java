@@ -1,9 +1,9 @@
-package eu.cedarsoft.presenter;
+package com.cedarsoft.presenter;
 
-import eu.cedarsoft.commons.struct.StructPart;
-import eu.cedarsoft.commons.struct.StructureChangedEvent;
-import eu.cedarsoft.commons.struct.StructureListener;
-import eu.cedarsoft.lookup.Lookup;
+import com.cedarsoft.commons.struct.StructPart;
+import com.cedarsoft.commons.struct.StructureChangedEvent;
+import com.cedarsoft.commons.struct.StructureListener;
+import com.cedarsoft.lookup.Lookup;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.ref.WeakReference;

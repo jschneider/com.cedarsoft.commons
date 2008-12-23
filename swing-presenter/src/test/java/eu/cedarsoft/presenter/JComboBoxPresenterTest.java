@@ -1,11 +1,11 @@
-package eu.cedarsoft.presenter;
+package com.cedarsoft.presenter;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import eu.cedarsoft.commons.struct.DefaultNode;
-import eu.cedarsoft.lookup.LookupStore;
-import eu.cedarsoft.lookup.Lookups;
+import com.cedarsoft.commons.struct.DefaultNode;
+import com.cedarsoft.lookup.LookupStore;
+import com.cedarsoft.lookup.Lookups;
 import static org.testng.Assert.*;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;

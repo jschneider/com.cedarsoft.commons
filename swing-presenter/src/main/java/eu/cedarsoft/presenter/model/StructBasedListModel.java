@@ -1,10 +1,10 @@
-package eu.cedarsoft.presenter.model;
+package com.cedarsoft.presenter.model;
 
-import eu.cedarsoft.commons.struct.StructPart;
-import eu.cedarsoft.commons.struct.StructureChangedEvent;
-import eu.cedarsoft.commons.struct.StructureListener;
-import eu.cedarsoft.lookup.LookupChangeEvent;
-import eu.cedarsoft.lookup.LookupChangeListener;
+import com.cedarsoft.commons.struct.StructPart;
+import com.cedarsoft.commons.struct.StructureChangedEvent;
+import com.cedarsoft.commons.struct.StructureListener;
+import com.cedarsoft.lookup.LookupChangeEvent;
+import com.cedarsoft.lookup.LookupChangeListener;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.ListModel;

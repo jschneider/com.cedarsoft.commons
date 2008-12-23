@@ -1,4 +1,4 @@
-package eu.cedarsoft.lookup;
+package com.cedarsoft.lookup;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -57,7 +57,7 @@ public class LookupChangeSupport {
   }
 
   /**
-   * Binds the given lookup change listener that is wrapped within a {@link eu.cedarsoft.lookup.WeakLookupChangeListener}.
+   * Binds the given lookup change listener that is wrapped within a {@link com.cedarsoft.lookup.WeakLookupChangeListener}.
    * Adds the given listener and calls
    * {@link LookupChangeListener#lookupChanged(LookupChangeEvent)} for the first time.
    *
@@ -69,7 +69,7 @@ public class LookupChangeSupport {
   }
 
   /**
-   * Binds the given lookup change listener (that is wrapped within a {@link eu.cedarsoft.lookup.WeakLookupChangeListener})
+   * Binds the given lookup change listener (that is wrapped within a {@link com.cedarsoft.lookup.WeakLookupChangeListener})
    * with the key retrieved from {@link TypedLookupChangeListener#getType()}.
    * Adds the given listener and calls
    * {@link LookupChangeListener#lookupChanged(LookupChangeEvent)} for the first time.

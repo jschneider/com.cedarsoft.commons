@@ -1,6 +1,6 @@
-package eu.cedarsoft.presenter.demo;
+package com.cedarsoft.presenter.demo;
 
-import eu.cedarsoft.presenter.Presenter;
+import com.cedarsoft.presenter.Presenter;
 
 import javax.swing.JButton;
 

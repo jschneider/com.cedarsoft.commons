@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
-    <groupId>eu.cedarsoft</groupId>
+    <groupId>com.cedarsoft</groupId>
     <artifactId>open</artifactId>
-    <version>1.4</version>
+    <version>1.0.2</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>eu.cedarsoft</groupId>
+  <groupId>com.cedarsoft</groupId>
   <artifactId>commons</artifactId>
   <packaging>pom</packaging>
   <version>1.1-SNAPSHOT</version>
@@ -16,16 +16,9 @@
   <url>http://www.cedarsoft.de</url>
 
   <scm>
-    <connection>scm:svn:https://svn.cedarsoft.eu/open/eu.cedarsoft.commons/trunk/</connection>
-    <developerConnection>scm:svn:https://svn.cedarsoft.eu/open/eu.cedarsoft.commons/trunk/</developerConnection>
+    <connection>scm:svn:https://svn.cedarsoft.eu/open/com.cedarsoft.commons/trunk/</connection>
+    <developerConnection>scm:svn:https://svn.cedarsoft.eu/open/com.cedarsoft.commons/trunk/</developerConnection>
   </scm>
-
-  <licenses>
-    <license>
-      <name>GLPv3</name>
-      <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
-    </license>
-  </licenses>
 
   <organization>
     <name>cedarsoft</name>
@@ -35,27 +28,27 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>eu.cedarsoft.commons</groupId>
+        <groupId>com.cedarsoft.commons</groupId>
         <artifactId>struct</artifactId>
         <version>${pom.version}</version>
       </dependency>
       <dependency>
-        <groupId>eu.cedarsoft.commons</groupId>
+        <groupId>com.cedarsoft.commons</groupId>
         <artifactId>lookup</artifactId>
         <version>${pom.version}</version>
       </dependency>
       <dependency>
-        <groupId>eu.cedarsoft.commons</groupId>
+        <groupId>com.cedarsoft.commons</groupId>
         <artifactId>presenter</artifactId>
         <version>${pom.version}</version>
       </dependency>
       <dependency>
-        <groupId>eu.cedarsoft.commons</groupId>
+        <groupId>com.cedarsoft.commons</groupId>
         <artifactId>repository</artifactId>
         <version>${pom.version}</version>
       </dependency>
       <dependency>
-        <groupId>eu.cedarsoft.commons</groupId>
+        <groupId>com.cedarsoft.commons</groupId>
         <artifactId>swing-presenter</artifactId>
         <version>${pom.version}</version>
       </dependency>

@@ -1,11 +1,11 @@
-package eu.cedarsoft.presenter.demo.avat;
+package com.cedarsoft.presenter.demo.avat;
 
-import eu.cedarsoft.commons.struct.StructPart;
-import eu.cedarsoft.presenter.ButtonBarPresenter;
-import eu.cedarsoft.presenter.FancyButtonPresenter;
-import eu.cedarsoft.presenter.JButtonPresenter;
-import eu.cedarsoft.presenter.JComboBoxPresenter;
-import eu.cedarsoft.presenter.Presenter;
+import com.cedarsoft.commons.struct.StructPart;
+import com.cedarsoft.presenter.ButtonBarPresenter;
+import com.cedarsoft.presenter.FancyButtonPresenter;
+import com.cedarsoft.presenter.JButtonPresenter;
+import com.cedarsoft.presenter.JComboBoxPresenter;
+import com.cedarsoft.presenter.Presenter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.JComponent;

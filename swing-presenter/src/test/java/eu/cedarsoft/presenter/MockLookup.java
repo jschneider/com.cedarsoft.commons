@@ -1,7 +1,7 @@
-package eu.cedarsoft.presenter;
+package com.cedarsoft.presenter;
 
-import eu.cedarsoft.lookup.LookupChangeSupport;
-import eu.cedarsoft.lookup.MappedLookup;
+import com.cedarsoft.lookup.LookupChangeSupport;
+import com.cedarsoft.lookup.MappedLookup;
 import org.jetbrains.annotations.NotNull;
 
 /**

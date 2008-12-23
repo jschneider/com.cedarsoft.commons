@@ -1,9 +1,9 @@
-package eu.cedarsoft.presenter.demo;
+package com.cedarsoft.presenter.demo;
 
-import eu.cedarsoft.commons.struct.StructPart;
-import eu.cedarsoft.lookup.Lookup;
-import eu.cedarsoft.presenter.Presenter;
-import eu.cedarsoft.presenter.SwingPresenter;
+import com.cedarsoft.commons.struct.StructPart;
+import com.cedarsoft.lookup.Lookup;
+import com.cedarsoft.presenter.Presenter;
+import com.cedarsoft.presenter.SwingPresenter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.JComponent;

@@ -1,10 +1,10 @@
-package eu.cedarsoft.presenter;
+package com.cedarsoft.presenter;
 
-import eu.cedarsoft.commons.struct.DefaultNode;
-import eu.cedarsoft.commons.struct.Node;
-import eu.cedarsoft.commons.struct.StructPart;
-import eu.cedarsoft.lookup.Lookup;
-import eu.cedarsoft.lookup.Lookups;
+import com.cedarsoft.commons.struct.DefaultNode;
+import com.cedarsoft.commons.struct.Node;
+import com.cedarsoft.commons.struct.StructPart;
+import com.cedarsoft.lookup.Lookup;
+import com.cedarsoft.lookup.Lookups;
 import org.jetbrains.annotations.NotNull;
 import static org.testng.Assert.*;
 import org.testng.annotations.*;

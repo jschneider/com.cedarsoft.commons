@@ -1,7 +1,7 @@
-package eu.cedarsoft.presenter;
+package com.cedarsoft.presenter;
 
-import eu.cedarsoft.commons.struct.Node;
-import eu.cedarsoft.commons.struct.StructPart;
+import com.cedarsoft.commons.struct.Node;
+import com.cedarsoft.commons.struct.StructPart;
 import org.jetbrains.annotations.NotNull;
 
 /**

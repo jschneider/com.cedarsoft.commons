@@ -1,8 +1,8 @@
-package eu.cedarsoft.presenter;
+package com.cedarsoft.presenter;
 
-import eu.cedarsoft.commons.struct.DepthFirstStructureTreeWalker;
-import eu.cedarsoft.commons.struct.StructPart;
-import eu.cedarsoft.commons.struct.StructureTreeWalker;
+import com.cedarsoft.commons.struct.DepthFirstStructureTreeWalker;
+import com.cedarsoft.commons.struct.StructPart;
+import com.cedarsoft.commons.struct.StructureTreeWalker;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 

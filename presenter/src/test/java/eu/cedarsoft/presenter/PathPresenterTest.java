@@ -1,7 +1,7 @@
-package eu.cedarsoft.presenter;
+package com.cedarsoft.presenter;
 
-import eu.cedarsoft.commons.struct.DefaultNode;
-import eu.cedarsoft.commons.struct.Node;
+import com.cedarsoft.commons.struct.DefaultNode;
+import com.cedarsoft.commons.struct.Node;
 import org.testng.annotations.*;
 import static org.testng.Assert.assertEquals;
 

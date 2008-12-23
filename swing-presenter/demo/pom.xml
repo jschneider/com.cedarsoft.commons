@@ -3,18 +3,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
     <artifactId>commons</artifactId>
-    <groupId>eu.cedarsoft</groupId>
+    <groupId>com.cedarsoft</groupId>
     <version>1.1-SNAPSHOT</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>eu.cedarsoft.commons.swing-presenter</groupId>
+  <groupId>com.cedarsoft.commons.swing-presenter</groupId>
   <artifactId>demo</artifactId>
   <name>Swing Presenter Demo</name>
 
   <dependencies>
     <dependency>
-      <groupId>eu.cedarsoft.commons</groupId>
+      <groupId>com.cedarsoft.commons</groupId>
       <artifactId>swing-presenter</artifactId>
     </dependency>
     <dependency>

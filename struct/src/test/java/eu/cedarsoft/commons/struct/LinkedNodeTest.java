@@ -1,4 +1,4 @@
-package eu.cedarsoft.commons.struct;
+package com.cedarsoft.commons.struct;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

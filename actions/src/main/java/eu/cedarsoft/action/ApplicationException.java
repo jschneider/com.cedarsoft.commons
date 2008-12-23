@@ -1,4 +1,4 @@
-package eu.cedarsoft.action;
+package com.cedarsoft.action;
 
 /**
  * This is an exception that is excepted to be thrown during application actions.

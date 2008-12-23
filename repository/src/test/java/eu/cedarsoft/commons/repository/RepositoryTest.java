@@ -1,13 +1,13 @@
-package eu.cedarsoft.commons.repository;
+package com.cedarsoft.commons.repository;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import eu.cedarsoft.commons.struct.ChildNotFoundException;
-import eu.cedarsoft.commons.struct.DefaultNode;
-import eu.cedarsoft.commons.struct.Node;
-import eu.cedarsoft.commons.struct.Path;
-import eu.cedarsoft.commons.struct.PathFactory;
+import com.cedarsoft.commons.struct.ChildNotFoundException;
+import com.cedarsoft.commons.struct.DefaultNode;
+import com.cedarsoft.commons.struct.Node;
+import com.cedarsoft.commons.struct.Path;
+import com.cedarsoft.commons.struct.PathFactory;
 import static org.testng.Assert.*;
 
 /**

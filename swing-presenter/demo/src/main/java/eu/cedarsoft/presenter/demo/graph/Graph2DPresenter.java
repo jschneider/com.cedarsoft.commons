@@ -1,8 +1,8 @@
-package eu.cedarsoft.presenter.demo.graph;
+package com.cedarsoft.presenter.demo.graph;
 
-import eu.cedarsoft.commons.struct.StructPart;
-import eu.cedarsoft.lookup.Lookup;
-import eu.cedarsoft.presenter.AbstractPresenter;
+import com.cedarsoft.commons.struct.StructPart;
+import com.cedarsoft.lookup.Lookup;
+import com.cedarsoft.presenter.AbstractPresenter;
 import org.jetbrains.annotations.NotNull;
 import y.base.Node;
 import y.layout.tree.TreeLayouter;

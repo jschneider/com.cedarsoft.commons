@@ -1,8 +1,8 @@
-package eu.cedarsoft.presenter;
+package com.cedarsoft.presenter;
 
-import eu.cedarsoft.commons.struct.DefaultNode;
-import eu.cedarsoft.commons.struct.Node;
-import eu.cedarsoft.lookup.MappedLookup;
+import com.cedarsoft.commons.struct.DefaultNode;
+import com.cedarsoft.commons.struct.Node;
+import com.cedarsoft.lookup.MappedLookup;
 import static org.testng.Assert.*;
 
 import org.testng.annotations.*;

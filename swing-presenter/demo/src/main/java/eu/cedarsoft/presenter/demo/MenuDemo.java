@@ -1,13 +1,13 @@
-package eu.cedarsoft.presenter.demo;
+package com.cedarsoft.presenter.demo;
 
-import eu.cedarsoft.commons.struct.DefaultNode;
-import eu.cedarsoft.commons.struct.Node;
-import eu.cedarsoft.lookup.DynamicLookup;
-import eu.cedarsoft.lookup.Lookups;
-import eu.cedarsoft.presenter.AbstractButtonPresenter;
-import eu.cedarsoft.presenter.JMenuBarPresenter;
-import eu.cedarsoft.presenter.JMenuPresenter;
-import eu.cedarsoft.presenter.demo.graph.NodePresenter;
+import com.cedarsoft.commons.struct.DefaultNode;
+import com.cedarsoft.commons.struct.Node;
+import com.cedarsoft.lookup.DynamicLookup;
+import com.cedarsoft.lookup.Lookups;
+import com.cedarsoft.presenter.AbstractButtonPresenter;
+import com.cedarsoft.presenter.JMenuBarPresenter;
+import com.cedarsoft.presenter.JMenuPresenter;
+import com.cedarsoft.presenter.demo.graph.NodePresenter;
 import org.jetbrains.annotations.NotNull;
 import y.view.Graph2D;
 

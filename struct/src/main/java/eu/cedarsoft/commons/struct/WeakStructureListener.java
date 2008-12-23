@@ -1,4 +1,4 @@
-package eu.cedarsoft.commons.struct;
+package com.cedarsoft.commons.struct;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

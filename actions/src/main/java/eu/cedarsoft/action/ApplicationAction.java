@@ -1,4 +1,4 @@
-package eu.cedarsoft.action;
+package com.cedarsoft.action;
 
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;

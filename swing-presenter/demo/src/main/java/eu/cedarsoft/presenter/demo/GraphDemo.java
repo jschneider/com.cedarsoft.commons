@@ -1,6 +1,6 @@
-package eu.cedarsoft.presenter.demo;
+package com.cedarsoft.presenter.demo;
 
-import eu.cedarsoft.presenter.demo.graph.Graph2DPresenter;
+import com.cedarsoft.presenter.demo.graph.Graph2DPresenter;
 import org.jetbrains.annotations.NotNull;
 import y.view.Graph2D;
 import y.view.Graph2DView;

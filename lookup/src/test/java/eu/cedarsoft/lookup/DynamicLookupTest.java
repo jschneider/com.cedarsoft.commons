@@ -1,4 +1,4 @@
-package eu.cedarsoft.lookup;
+package com.cedarsoft.lookup;
 
 import static org.testng.Assert.*;
 import org.testng.annotations.*;

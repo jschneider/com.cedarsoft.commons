@@ -1,8 +1,8 @@
-package eu.cedarsoft.presenter;
+package com.cedarsoft.presenter;
 
-import eu.cedarsoft.commons.struct.StructPart;
-import eu.cedarsoft.lookup.Lookup;
-import eu.cedarsoft.lookup.binding.PropertyCallback;
+import com.cedarsoft.commons.struct.StructPart;
+import com.cedarsoft.lookup.Lookup;
+import com.cedarsoft.lookup.binding.PropertyCallback;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 

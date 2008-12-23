@@ -1,6 +1,6 @@
-package eu.cedarsoft.presenter.model;
+package com.cedarsoft.presenter.model;
 
-import eu.cedarsoft.commons.struct.StructPart;
+import com.cedarsoft.commons.struct.StructPart;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

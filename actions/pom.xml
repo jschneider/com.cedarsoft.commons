@@ -3,12 +3,12 @@
 
   <parent>
     <artifactId>commons</artifactId>
-    <groupId>eu.cedarsoft</groupId>
+    <groupId>com.cedarsoft</groupId>
     <version>1.1-SNAPSHOT</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>eu.cedarsoft.commons</groupId>
+  <groupId>com.cedarsoft.commons</groupId>
   <artifactId>actions</artifactId>
   <name>Actions</name>
 

@@ -1,7 +1,7 @@
-package eu.cedarsoft.commons.struct;
+package com.cedarsoft.commons.struct;
 
-import eu.cedarsoft.lookup.Lookup;
-import eu.cedarsoft.lookup.Lookups;
+import com.cedarsoft.lookup.Lookup;
+import com.cedarsoft.lookup.Lookups;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

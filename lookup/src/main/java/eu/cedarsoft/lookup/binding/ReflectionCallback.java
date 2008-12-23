@@ -1,7 +1,7 @@
-package eu.cedarsoft.lookup.binding;
+package com.cedarsoft.lookup.binding;
 
-import eu.cedarsoft.lookup.LookupChangeEvent;
-import eu.cedarsoft.lookup.LookupChangeListener;
+import com.cedarsoft.lookup.LookupChangeEvent;
+import com.cedarsoft.lookup.LookupChangeListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.InvocationTargetException;

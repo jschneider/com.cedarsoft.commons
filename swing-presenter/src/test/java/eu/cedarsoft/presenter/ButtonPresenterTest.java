@@ -1,10 +1,10 @@
-package eu.cedarsoft.presenter;
+package com.cedarsoft.presenter;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import eu.cedarsoft.commons.struct.DefaultNode;
-import eu.cedarsoft.commons.struct.Node;
+import com.cedarsoft.commons.struct.DefaultNode;
+import com.cedarsoft.commons.struct.Node;
 import static org.testng.Assert.*;
 
 import javax.swing.AbstractAction;

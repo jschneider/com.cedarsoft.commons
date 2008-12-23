@@ -1,10 +1,10 @@
-package eu.cedarsoft.presenter.demo.avat;
+package com.cedarsoft.presenter.demo.avat;
 
-import eu.cedarsoft.commons.struct.DefaultNode;
-import eu.cedarsoft.commons.struct.Node;
-import eu.cedarsoft.lookup.Lookups;
-import eu.cedarsoft.presenter.JMenuBarPresenter;
-import eu.cedarsoft.presenter.StructStringPresenter;
+import com.cedarsoft.commons.struct.DefaultNode;
+import com.cedarsoft.commons.struct.Node;
+import com.cedarsoft.lookup.Lookups;
+import com.cedarsoft.presenter.JMenuBarPresenter;
+import com.cedarsoft.presenter.StructStringPresenter;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 

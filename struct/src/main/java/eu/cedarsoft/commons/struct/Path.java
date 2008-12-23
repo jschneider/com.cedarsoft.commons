@@ -1,4 +1,4 @@
-package eu.cedarsoft.commons.struct;
+package com.cedarsoft.commons.struct;
 
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
@@ -12,7 +12,7 @@ import java.util.List;
  * Represents a path of several nodes.
  * A path is a string representation.
  * <p/>
- * If you want to get a "list" of nodes try {@link eu.cedarsoft.commons.struct.Route} instead.
+ * If you want to get a "list" of nodes try {@link com.cedarsoft.commons.struct.Route} instead.
  */
 public class Path implements Serializable {
   private static final long serialVersionUID = -201844652320294645L;

@@ -1,4 +1,4 @@
-package eu.cedarsoft.presenter;
+package com.cedarsoft.presenter;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,4 +1,4 @@
-package eu.cedarsoft.lookup;
+package com.cedarsoft.lookup;
 
 import org.jetbrains.annotations.NotNull;
 import org.testng.annotations.*;

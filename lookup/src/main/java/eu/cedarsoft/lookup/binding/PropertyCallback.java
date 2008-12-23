@@ -1,7 +1,7 @@
-package eu.cedarsoft.lookup.binding;
+package com.cedarsoft.lookup.binding;
 
-import eu.cedarsoft.lookup.LookupChangeEvent;
-import eu.cedarsoft.lookup.TypedLookupChangeListener;
+import com.cedarsoft.lookup.LookupChangeEvent;
+import com.cedarsoft.lookup.TypedLookupChangeListener;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 

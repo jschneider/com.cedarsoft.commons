@@ -1,7 +1,7 @@
-package eu.cedarsoft.presenter;
+package com.cedarsoft.presenter;
 
-import eu.cedarsoft.commons.struct.StructPart;
-import eu.cedarsoft.lookup.Lookup;
+import com.cedarsoft.commons.struct.StructPart;
+import com.cedarsoft.lookup.Lookup;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.JMenuBar;
