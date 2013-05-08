@@ -1,11 +1,11 @@
 {
-  "built_on": "master",
-  "duration": 806.819,
-  "full_display_name": "com.cedarsoft.commons #39",
-  "id": "2013-05-08_02-54-32",
-  "number": 39,
-  "result": "SUCCESS",
+  "built_on": "moria64",
+  "duration": 140.51,
+  "full_display_name": "com.cedarsoft.commons #40",
+  "id": "2013-05-08_22-24-49",
+  "number": 40,
+  "result": "FAILURE",
   "status_message": "?",
-  "time": "2013-05-08 02:54:32 +0200",
-  "url": "job/com.cedarsoft.commons/39/"
+  "time": "2013-05-08 22:24:49 +0200",
+  "url": "job/com.cedarsoft.commons/40/"
 }
