@@ -1,11 +1,11 @@
 {
   "built_on": "master",
-  "duration": 134.219,
-  "full_display_name": "com.cedarsoft.commons #59",
-  "id": "2013-05-19_02-55-45",
-  "number": 59,
+  "duration": 136.233,
+  "full_display_name": "com.cedarsoft.commons #60",
+  "id": "2013-05-20_02-55-45",
+  "number": 60,
   "result": "FAILURE",
   "status_message": "?",
-  "time": "2013-05-19 02:55:45 +0200",
-  "url": "job/com.cedarsoft.commons/59/"
+  "time": "2013-05-20 02:55:45 +0200",
+  "url": "job/com.cedarsoft.commons/60/"
 }
