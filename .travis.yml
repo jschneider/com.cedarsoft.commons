@@ -1,0 +1,9 @@
+language: bash
+
+sudo: required
+
+services:
+  - docker
+
+script:
+  - docker run --rm -v $(pwd):/root/sources -w /root/sources maven:3.3.9-jdk-8 mvn -Prun-its clean install
